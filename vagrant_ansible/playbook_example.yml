@@ -1,6 +1,6 @@
 ---
 - name: Install Apache and load web-site
-  hosts: advit
+  hosts: example
   become: yes
 
 

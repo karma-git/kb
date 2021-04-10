@@ -32,6 +32,7 @@ $ vagrant up
 
 # Create VMs
 **Create** create machines via `$ vagrant up`
+
 During provisioning you will see machines ip-addresses:
 ```
 ...
@@ -41,6 +42,7 @@ During provisioning you will see machines ip-addresses:
     redhat: bridged int ip-address is <192.168.1.6>
 ```
 Or you can login to machines via `$ vagrant ssh ubuntu` or `$ vagrant ssh redhat` and check it there.
+
 You have to add them into `hosts.txt` file like in the example bellow:
 ```
 $ cat hosts.txt
@@ -111,3 +113,4 @@ ubuntu                     : ok=6    changed=4    unreachable=0    failed=0    s
 ```
 # Check your website
 After completing the game add your IP address into a browser's address line and you will see this:
+![deployed](/vagrant_ansible/successfully_deployed.png)
