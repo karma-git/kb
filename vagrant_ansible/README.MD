@@ -1,5 +1,5 @@
 # Tutorial summary
-In this example you will learn how to deploy your website via virtualbox, vagrant, and ansible.
+In this example you will learn how to deploy your website via [virtualbox](https://www.virtualbox.org/), [vagrant](https://www.vagrantup.com/), and [ansible](https://www.ansible.com/).
 Please install these tools.
 # Bridged host interface
 In my case int name is `en0: Wi-Fi (AirPort)`.
