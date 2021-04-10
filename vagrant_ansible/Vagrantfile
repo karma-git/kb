@@ -1,0 +1,55 @@
+ssh_pub_key = File.readlines("#{Dir.home}/.ssh/pubkey").first.strip
+# host_bridge_int = "en0: Wi-Fi (AirPort)"
+host_bridge_int = ""
+
+$net_info = <<-SCRIPT
+mac=$(/sbin/ip -o -4 link list eth1 | awk {'print $17'})
+ip=$(/sbin/ip addr show dev eth1 | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -n1)
+printf "bridged int mac-address is <%s>\n" $mac
+printf "bridged int ip-address is <%s>\n" $ip
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.define "ubuntu" do |ubuntu|
+
+  # Boxes
+  ubuntu.vm.box = "generic/ubuntu1804"
+
+  # Networking
+  ubuntu.vm.network "public_network",
+    use_dhcp_assigned_default_route: true,
+    bridge: "#{host_bridge_int}"
+
+  # Shared folders
+  # ubuntu.vm.synced_folder ".", "/srv"
+
+  # Provisioning
+  # python3 installed as system interpreter
+  ubuntu.vm.provision :shell, :inline => "echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys"
+  ubuntu.vm.provision :shell, :inline => $net_info
+  # ubuntu
+  end
+
+
+  config.vm.define "redhat" do |redhat|
+
+  # Boxes
+  #redhat.vm.box = "centos/7"
+  redhat.vm.box = "centos/stream8"
+
+  # Networking
+  redhat.vm.network "public_network",
+    use_dhcp_assigned_default_route: true,
+    bridge: "#{host_bridge_int}"
+
+  # Shared folders
+  # redhat.vm.synced_folder ".", "/srv"
+
+  # Provisioning
+  redhat.vm.provision :shell, :inline => "yum -y install python3", :privileged => true
+  redhat.vm.provision :shell, :inline => "echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys"
+  redhat.vm.provision :shell, :inline => $net_info
+  # redhat
+  end
+#config
+end
