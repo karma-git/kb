@@ -66,7 +66,7 @@ def read_config() -> tuple:
     return params
 
 
-def launch_ec2_instance(ec2, json_path=False, user_args=False, region=False) -> dict:
+def launch_ec2_instance(ec2, json_path=False, user_args=False, region=False) -> tuple:
     if json and user_args:
         logger.critical("Only one option for describing ec2 instance is allowed")
         raise ParamsConflict
@@ -110,28 +110,34 @@ def launch_ec2_instance(ec2, json_path=False, user_args=False, region=False) -> 
                  instance, type(instance))
 
     ec2_instance_properties = {key: getattr(instance, key) for key in dir(instance)
-                         if not key.startswith('_') and not callable(getattr(instance, key))}
+                               if not key.startswith('_') and not callable(getattr(instance, key))}
     logger.debug("Instance info: {}", ec2_instance_properties)
-    return ec2_instance_properties
+    return ec2_instance_properties, instance.public_ip_address
 
 
-def add_ec2_to_ansible_hosts(ec2_info: dict, hosts_file_path: str) -> NoReturn:
-    alias = ec2_info.get('name')
-    ip4 = ec2_info.get('ip')
-    if alias:
-        add_to_inv = f"{alias} ansible_host={ip4}"
+def add_ec2_to_ansible_hosts(ec2_info: dict, ip4: str, hosts_file_path: str) -> NoReturn:
+    try:
+        alias = list(filter(lambda x: True if x['Key'] == 'Name' else False, ec2_info['tags']))[0]['Value']
+    except (ValueError, TypeError) as error:
+        logger.warning(error)
     else:
-        add_to_inv = f"ansible_host={ip4}"
-    with open(hosts_file_path, 'a') as ansible_hosts_file:
-        ansible_hosts_file.write(add_to_inv)
+        add_to_inv = f"{alias} ansible_host={ip4}"
+    finally:
+
+        if not 'alias' in locals():
+            add_to_inv = f"ansible_host={ip4}"
+
+        with open(hosts_file_path, 'a') as ansible_hosts_file:
+            ansible_hosts_file.write(add_to_inv)
 
 
 def main() -> NoReturn:
     key, secret, region = read_config()
 
     ec2 = ec2_obj(key, secret, region)
-    ec2_inst = launch_ec2_instance(ec2, '/Users/ah/repos/DevOps/github_repo/aws_boto3_ansible/ec2_details.json')
-    print(ec2_inst)
+    ec2_dict, ip4 = launch_ec2_instance(ec2, '/Users/ah/repos/DevOps/github_repo/aws_boto3_ansible/ec2_details.json')
+    print(ip4)
+    add_ec2_to_ansible_hosts(ec2_dict, ip4, '/Users/ah/infra/ansible/hosts.txt')
 
 
 if __name__ == '__main__':
