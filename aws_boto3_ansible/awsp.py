@@ -10,26 +10,6 @@ from loguru import logger
 from exceptions import (ParamsConflict)
 
 
-# class EC2:
-#     """
-#     :return EC2.ServiceResource
-#     """
-#
-#     def __init__(self, aws_access_key_id: str, aws_secret_access_key: str, region_name: str):
-#         self.__aws_access_key_id = aws_access_key_id
-#         self.__aws_secret_access_key = aws_secret_access_key
-#         self.__region_name = region_name
-#
-#     def __call__(self, *args, **kwargs):
-#         ec2 = boto3.resource('ec2',
-#                              aws_access_key_id=self.__aws_access_key_id,
-#                              aws_secret_access_key=self.__aws_secret_access_key,
-#                              region_name=self.__region_name,
-#                              )
-#         ec2: boto3.resources.factory.ec2.ServiceResource
-#         return ec2
-
-# def ec2_obj(key, secret, region) -> boto3.resources.factory.ec2.ServiceResource:
 def ec2_obj(key: str, secret: str, region: str):
     """
     :return: ec2.ServiceResource
@@ -126,15 +106,13 @@ def launch_ec2_instance(ec2, json_path=False, user_args=False, region=False) -> 
     instance.wait_until_running()
     instance.load()
 
-    # logger.debug("Instance info: (call => {}, type => {},\n attrs => {}",
-    #              instance, type(instance), dir(instance))
-    #
-    # logger.info("Instance has been started provisioning: (id={}, dns={}, ipv4={}",
-    #             instance.id, instance.public_dns_name, instance.public_ip_address)
+    logger.debug("Instance info: (call => {}, type => {}",
+                 instance, type(instance))
 
-    provisioning_info = {key: dir(instance)[key] for key in dir(instance) if not key.startswith('_')}
-    logger.debug("Instance info: {}", provisioning_info)
-    return provisioning_info
+    ec2_instance_properties = {key: getattr(instance, key) for key in dir(instance)
+                         if not key.startswith('_') and not callable(getattr(instance, key))}
+    logger.debug("Instance info: {}", ec2_instance_properties)
+    return ec2_instance_properties
 
 
 def add_ec2_to_ansible_hosts(ec2_info: dict, hosts_file_path: str) -> NoReturn:
