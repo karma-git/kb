@@ -1,3 +1,4 @@
+import argparse
 import boto3
 import os
 import sys
@@ -12,7 +13,7 @@ from exceptions import (ParamsConflict)
 
 def ec2_obj(key: str, secret: str, region: str):
     """
-    :return: ec2.ServiceResource
+    :return: <class 'boto3.resources.factory.ec2.Instance'>
     """
     ec2 = boto3.resource('ec2',
                          aws_access_key_id=key,
@@ -31,11 +32,15 @@ def create_config() -> NoReturn:
     access_key = getpass('AWS Access Key ID: ')
     secret = getpass('AWS Secret Access Key: ')
     region = input('region name: ')
+    ansible_inventory = input('file path for ansible_hosts: ')
 
     config['aws'] = {
         'aws_access_key_id': access_key,
         'aws_secret_access_key': secret,
         'region_name': region,
+    }
+    config['config'] = {
+        'ansible_inventory': ansible_inventory,
     }
 
     with open('config.ini', 'w') as configfile:
@@ -62,11 +67,19 @@ def read_config() -> tuple:
     params = (config.get('aws', 'aws_access_key_id'),
               config.get('aws', 'aws_secret_access_key'),
               config.get('aws', 'region_name'),
+              config.get('config', 'ansible_inventory')
               )
     return params
 
 
-def launch_ec2_instance(ec2, json_path=False, user_args=False, region=False) -> tuple:
+def launch_ec2_instance(ec2, json_path: str = False, user_args: dict = False, region: str = False) -> tuple:
+    """
+    :param ec2: <class 'boto3.resources.factory.ec2.Instance'>
+    :param json_path:
+    :param user_args:
+    :param region:
+    :return:
+    """
     if json and user_args:
         logger.critical("Only one option for describing ec2 instance is allowed")
         raise ParamsConflict
@@ -131,13 +144,76 @@ def add_ec2_to_ansible_hosts(ec2_info: dict, ip4: str, hosts_file_path: str) -> 
             ansible_hosts_file.write(add_to_inv)
 
 
-def main() -> NoReturn:
-    key, secret, region = read_config()
+def worker(iac_filepath: str = False, cli_config: dict = False, add_to_inventory: bool = False) -> NoReturn:
+    key, secret, region, ansible_hosts = read_config()
 
     ec2 = ec2_obj(key, secret, region)
-    ec2_dict, ip4 = launch_ec2_instance(ec2, '/Users/ah/repos/DevOps/github_repo/aws_boto3_ansible/ec2_details.json')
+    if iac_filepath:
+        ec2_dict, ip4 = launch_ec2_instance(ec2, iac_filepath)
+    elif cli_config:
+        ec2_dict, ip4 = launch_ec2_instance(ec2, cli_config)
+    # END CONDITION and print IPV4
     print(ip4)
-    add_ec2_to_ansible_hosts(ec2_dict, ip4, '/Users/ah/infra/ansible/hosts.txt')
+
+    if add_to_inventory:
+        add_ec2_to_ansible_hosts(ec2_dict, ip4, ansible_hosts)
+
+
+def main():
+    parser = argparse.ArgumentParser(description="A CLI for provisioning ec2 instances on AWS",
+                                     formatter_class=argparse.RawTextHelpFormatter)
+
+    parser.add_argument('-r', '--region', help='Change current region')
+    parser.add_argument('-f,' '--file', help='filepath for IaC')
+    #parser.add_argument('-r', '--region', help='Change current region')
+    parser.add_argument('--iac')
+    parser.add_argument('-a', '--ansible_inventory', help='save ip4 to ansible inventory file', action='store_true',
+                        default=False)
+    parser.add_argument('-z', '--availability_zone', help='Availability Zone', default=False)
+    parser.add_argument('-i', '--instance_type', help='Instance type', choices=['t2.micro'], default='t2.micro')
+    parser.add_argument('-g', '--image_id', help='OS type for provisioning', choices=['ami-043097594a7df80ec'],
+                        default='ami-043097594a7df80ec')
+    parser.add_argument('-k', '--key_name', help='key-name on aws', default=False)
+    parser.add_argument('-s', '--security_group', help='Access for the ec2', default='sg-3ef6eb4d')
+    parser.add_argument('-n', '--hostname', help='Tag -> Name -> <Value>', default='False')
+    parser.add_argument('-u', '--update_config', help='update aws config')
+
+    args = parser.parse_args()
+    logger.debug("argparse namespace: {}", args)
+
+    if args.region or args.update_config:
+        create_config() if args.update_config else update_region() if args.region else logger.critical("Something is "
+                                                                                                       "wrong")
+        logger.info('AWS config has been updated, please relaunch cli!')
+        sys.exit('Exit')
+
+    if args.file:
+        worker(iac_filepath=args.file) if not args.ansible_inventory else worker(iac_filepath=args.file,
+                                                                                      add_to_inventory=True)
+    elif not args.file:
+        cli_iac_config = {
+            "ImageId": args.image_id,
+            "InstanceType": args.instance_type,
+            # TODO from flag
+            "MinCount": 1,
+            "MaxCount": 1,
+            "SecurityGroupIds": [args.security_group],
+            "Placement": {
+                "AvailabilityZone": args.availability_zone,
+            },
+            "KeyName": args.key_name,
+            "TagSpecifications": [{
+                "ResourceType": "instance",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": args.hostname
+                    },
+                ]
+            }]
+        }
+        worker(cli_config=cli_iac_config) if not args.ansible_inventory else worker(iac_filepath=cli_iac_config,
+                                                                                    add_to_inventory=True)
 
 
 if __name__ == '__main__':
