@@ -10,6 +10,11 @@ from getpass import getpass
 from loguru import logger
 from exceptions import (ParamsConflict)
 
+# Clear current logger
+logger.remove(0)
+# logger.add(sys.stderr, level='TRACE')
+logger.add(sys.stderr, level='ERROR')
+
 
 def ec2_obj(key: str, secret: str, region: str):
     """
@@ -80,9 +85,12 @@ def launch_ec2_instance(ec2, json_path: str = False, user_args: dict = False, re
     :param region:
     :return:
     """
-    if json and user_args:
-        logger.critical("Only one option for describing ec2 instance is allowed")
-        raise ParamsConflict
+    logger.debug('Args: ec2={},{}\n; json_path={},{}\n; user_args={},{}\n; region={},{}',
+                 ec2, type(ec2), json_path, type(json_path), user_args, type(user_args), region, type(region))
+
+    # if json != False and user_args != False:
+    #     logger.critical("Only one option for describing ec2 instance is allowed")
+    #     raise ParamsConflict
 
     if json_path:
         with open(json_path) as jsonfile:
@@ -93,6 +101,14 @@ def launch_ec2_instance(ec2, json_path: str = False, user_args: dict = False, re
         choice = lambda user_arg, default_arg: user_args.get(user_arg) if user_args.get(
             user_arg) is not None else default_arg
         # TODO: choices for argparse!
+        try:
+            hostname = user_args['TagSpecifications'][0]['Tags'][0]['Value']
+        except (ValueError, TypeError) as error:
+            logger.warning("Looks like you did not specified hostname error => {}", error)
+        finally:
+            hostname = f'{region}-node_{str(random.choice(range(1, 10)))}' if not 'hostname' in locals() else \
+                user_args['TagSpecifications'][0]['Tags'][0]['Value']
+
         instances = ec2.create_instances(
             ImageId=choice('ImageId', 'ami-043097594a7df80ec'),  # Amazon Linux 2 by default
             InstanceType=choice('InstanceType', 't2.micro'),  # Free Tier
@@ -108,7 +124,7 @@ def launch_ec2_instance(ec2, json_path: str = False, user_args: dict = False, re
                     "ResourceType": "instance",
                     "Tags": [
                         {"Key": "Name",
-                         "Value": choice('Name', random.choice(f"{region + '-node_' + random.choice(range(1, 10))}"))}
+                         "Value": hostname}
                     ]
                 }
             ]
@@ -133,12 +149,8 @@ def add_ec2_to_ansible_hosts(ec2_info: dict, ip4: str, hosts_file_path: str) -> 
         alias = list(filter(lambda x: True if x['Key'] == 'Name' else False, ec2_info['tags']))[0]['Value']
     except (ValueError, TypeError) as error:
         logger.warning(error)
-    else:
-        add_to_inv = f"{alias} ansible_host={ip4}"
     finally:
-
-        if not 'alias' in locals():
-            add_to_inv = f"ansible_host={ip4}"
+        add_to_inv = f"ansible_host={ip4}\n" if not 'alias' in locals() else f"{alias} ansible_host={ip4}\n"
 
         with open(hosts_file_path, 'a') as ansible_hosts_file:
             ansible_hosts_file.write(add_to_inv)
@@ -149,9 +161,9 @@ def worker(iac_filepath: str = False, cli_config: dict = False, add_to_inventory
 
     ec2 = ec2_obj(key, secret, region)
     if iac_filepath:
-        ec2_dict, ip4 = launch_ec2_instance(ec2, iac_filepath)
+        ec2_dict, ip4 = launch_ec2_instance(ec2, json_path=iac_filepath, region=region)
     elif cli_config:
-        ec2_dict, ip4 = launch_ec2_instance(ec2, cli_config)
+        ec2_dict, ip4 = launch_ec2_instance(ec2, user_args=cli_config, region=region)
     # END CONDITION and print IPV4
     print(ip4)
 
@@ -163,12 +175,14 @@ def main():
     parser = argparse.ArgumentParser(description="A CLI for provisioning ec2 instances on AWS",
                                      formatter_class=argparse.RawTextHelpFormatter)
 
+    # Management Flags
     parser.add_argument('-r', '--region', help='Change current region')
-    parser.add_argument('-f,' '--file', help='filepath for IaC')
-    #parser.add_argument('-r', '--region', help='Change current region')
-    parser.add_argument('--iac')
-    parser.add_argument('-a', '--ansible_inventory', help='save ip4 to ansible inventory file', action='store_true',
-                        default=False)
+    parser.add_argument('-u', '--update_config', help='update aws config')
+
+    # Infrastructure as a Code from a json file
+    parser.add_argument('--iac', help='filepath for IaC in a json file', default=False)
+
+    # Configure EC2 instance via CLI params
     parser.add_argument('-z', '--availability_zone', help='Availability Zone', default=False)
     parser.add_argument('-i', '--instance_type', help='Instance type', choices=['t2.micro'], default='t2.micro')
     parser.add_argument('-g', '--image_id', help='OS type for provisioning', choices=['ami-043097594a7df80ec'],
@@ -176,7 +190,12 @@ def main():
     parser.add_argument('-k', '--key_name', help='key-name on aws', default=False)
     parser.add_argument('-s', '--security_group', help='Access for the ec2', default='sg-3ef6eb4d')
     parser.add_argument('-n', '--hostname', help='Tag -> Name -> <Value>', default='False')
-    parser.add_argument('-u', '--update_config', help='update aws config')
+
+    # ON/OFF adding a record to ansible inventory file
+    parser.add_argument('-a', '--ansible_inventory', help='save ip4 to ansible inventory file', action='store_true',
+                        default=False)
+
+    # TODO: DEBUG FLAGS HERE
 
     args = parser.parse_args()
     logger.debug("argparse namespace: {}", args)
@@ -187,10 +206,10 @@ def main():
         logger.info('AWS config has been updated, please relaunch cli!')
         sys.exit('Exit')
 
-    if args.file:
-        worker(iac_filepath=args.file) if not args.ansible_inventory else worker(iac_filepath=args.file,
-                                                                                      add_to_inventory=True)
-    elif not args.file:
+    if args.iac:
+        worker(iac_filepath=args.iac) if not args.ansible_inventory else worker(iac_filepath=args.iac,
+                                                                                add_to_inventory=True)
+    elif not args.iac:
         cli_iac_config = {
             "ImageId": args.image_id,
             "InstanceType": args.instance_type,
@@ -207,12 +226,12 @@ def main():
                 "Tags": [
                     {
                         "Key": "Name",
-                        "Value": args.hostname
+                        "Value": args.hostname.replace(' ', '_')
                     },
                 ]
             }]
         }
-        worker(cli_config=cli_iac_config) if not args.ansible_inventory else worker(iac_filepath=cli_iac_config,
+        worker(cli_config=cli_iac_config) if not args.ansible_inventory else worker(cli_config=cli_iac_config,
                                                                                     add_to_inventory=True)
 
 
