@@ -111,5 +111,5 @@ webserver_from_cli         : ok=6    changed=5    unreachable=0    failed=0    s
 ```
 ### Result
 After completing the game add your IP address into a browser's address line and you will see this: deployed
-![deployed](/aws_boto3/ec2_deployment.png)
+![deployed](/ec2_deploymnet.png)
 
