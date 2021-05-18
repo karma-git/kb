@@ -7,16 +7,21 @@ from flask import (
     request,
 )
 from flask_bootstrap import Bootstrap
+from flask_moment import Moment
+from datetime import datetime
 
 app = Flask(__name__)
 
 bootstrap = Bootstrap(app)
 
+moment = Moment(app)
+
 
 @app.route('/')
 def index():
     ip = request.remote_addr
-    return render_template('index.html', ip=ip)
+    current_time = datetime.utcnow()
+    return render_template('index.html', ip=ip, current_time=current_time)
 
 
 if __name__ == "__main__":

@@ -14,7 +14,7 @@
 
 {% block content %}
 <div class="container" align="center">
-        {% if ip != '127.0.0.1'%}
+        {% if ip == '127.0.0.1'%}
           <img src="{{ url_for('static', filename='bigbrother.png') }}" alt="BB is Watching You" width="1000", height="750">
           <h2>I see you:)</h2>
           <p> Your ip is {{ ip }}
@@ -22,6 +22,10 @@
         <img src="{{ url_for('static', filename='ah.jpg') }}" alt="I'm Watching You" width="400", height="870">
                   <p> Self vs Self
         {%endif%}
+<p>The local date and time is {{ moment(current_time).format('LLL') }}.
+</p>
+<p>That was {{ moment(current_time).fromNow(refresh=True) }}</p>
+
 
 
 
@@ -32,4 +36,5 @@
 
 {% block scripts %}
 {{ super() }}
+{{ moment.include_moment() }}
 {% endblock %}
