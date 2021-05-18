@@ -1,0 +1,35 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Flasky{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation"></div>
+{% endblock %}
+
+{% block content %}
+<div class="container" align="center">
+        {% if ip != '127.0.0.1'%}
+          <img src="{{ url_for('static', filename='bigbrother.png') }}" alt="BB is Watching You" width="1000", height="750">
+          <h2>I see you:)</h2>
+          <p> Your ip is {{ ip }}
+        {% else %}
+        <img src="{{ url_for('static', filename='ah.jpg') }}" alt="I'm Watching You" width="400", height="870">
+                  <p> Self vs Self
+        {%endif%}
+
+
+
+{% block page_content %}
+{% endblock %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{% endblock %}
