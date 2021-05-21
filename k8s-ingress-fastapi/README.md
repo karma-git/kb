@@ -2,8 +2,15 @@
 `$ minikube start --cpus=2 --memory=4gb --disk-size=25gb --vm-driver=virtualbox`
 ### enable nginx ingress
 `$ minikube addons enable ingress`
-### deploy app
+## Deploy
+### deploy app via kubectl
 `$ kubectl apply -f k8s.yml`
+### deploy app via terraform
+```
+$ terraform init
+$ terraform plan
+$ terraform apply  
+```
 ### check resource
 ```
 $ minikube ip
