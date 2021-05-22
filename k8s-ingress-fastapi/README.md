@@ -11,6 +11,8 @@ $ terraform init
 $ terraform plan
 $ terraform apply  
 ```
+### deploy via helm
+`$ helm install fastapi helm/`
 ### check resource
 ```
 $ minikube ip
