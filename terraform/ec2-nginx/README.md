@@ -5,8 +5,11 @@
 ### init
 `$ terraform init`
 ### create resourse
+
 `$ terraform apply`
+
 ---
+
 ### Check website in public network
 ```
 Outputs:
