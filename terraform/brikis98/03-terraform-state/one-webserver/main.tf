@@ -7,7 +7,7 @@ resource "aws_instance" "example" {
   instance_type = "t2.micro"
   user_data              = <<EOF
 #!/bin/bash
-echo "Hello world from $(hosname -f)" > index.html
+echo "Hello world from $(hostname -f)" > index.html
 nohup busybox httpd -f -p ${var.server_port} &
 EOF
 
