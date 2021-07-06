@@ -7,8 +7,8 @@ resource "aws_instance" "example" {
   instance_type = "t2.micro"
   user_data              = <<EOF
 #!/bin/bash
-echo "Hello, World" > index.html
-nohup busybox httpd -f -p 8080 &
+echo "Hello world from $(hosname -f)" > index.html
+nohup busybox httpd -f -p ${var.server_port} &
 EOF
 
   vpc_security_group_ids = [aws_security_group.example.id]
@@ -23,9 +23,9 @@ resource "aws_security_group" "example" {
   name = "allow http"
 
   ingress {
-    from_port = 8080
+    from_port = var.server_port
     protocol = "tcp"
-    to_port = 8080
+    to_port = var.server_port
     cidr_blocks = ["0.0.0.0/0"]
   }
 
