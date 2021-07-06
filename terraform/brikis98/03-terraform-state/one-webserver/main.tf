@@ -3,21 +3,18 @@ provider "aws" {
 }
 
 resource "aws_instance" "example" {
-  ami = "ami-043097594a7df80ec"
+  ami = "ami-05f7491af5eef733a"
   instance_type = "t2.micro"
   user_data              = <<EOF
 #!/bin/bash
-yum -y update
-yum -y install httpd
-echo "Hello world from $(hostname -f)" > /var/www/html/index.html
-sudo service httpd start
-chkconfig httpd on
+echo "Hello, World" > index.html
+nohup busybox httpd -f -p 8080 &
 EOF
 
   vpc_security_group_ids = [aws_security_group.example.id]
 
   tags = {
-    Name = "terraform example"
+    Name = "WebServer"
   }
 
 }
@@ -26,18 +23,12 @@ resource "aws_security_group" "example" {
   name = "allow http"
 
   ingress {
-    from_port = 80
+    from_port = 8080
     protocol = "tcp"
-    to_port = 80
+    to_port = 8080
     cidr_blocks = ["0.0.0.0/0"]
   }
-  egress {
-  from_port        = 0
-  to_port          = 0
-  protocol         = "-1"
-  cidr_blocks      = ["0.0.0.0/0"]
-  ipv6_cidr_blocks = ["::/0"]
-  }
+
   tags = {
     Name = "allow http"
   }
