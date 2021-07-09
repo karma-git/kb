@@ -10,3 +10,5 @@ cp wordpress/wp-config-sample.php wordpress/wp-config.php
 cp -r wordpress/* /var/www/html/
 systemctl enable httpd
 sudo systemctl start httpd
+
+
