@@ -1,0 +1,39 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecr-exporter
+  namespace: prometheus-stack
+  labels:
+    app: ecr-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecr-exporter
+  template:
+    metadata:
+      labels:
+        app: ecr-exporter
+    spec:
+      containers:
+        - image: "ghcr.io/aws-exporters/prometheus-ecr-exporter"
+          name: ecr-exporter
+          ports:
+            - name: web
+              containerPort: 9000
+          env:
+          - name: AWS_DEFAULT_REGION
+            value: "us-west-1"
+          - name: AWS_ACCESS_KEY_ID
+            value: "AKIAWGBUZSUXNHVB5KPU"
+          - name: AWS_SECRET_ACCESS_KEY
+            value: "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"
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "50m"
+            limits:
+              memory: "64Mi"
+              cpu: "100m"

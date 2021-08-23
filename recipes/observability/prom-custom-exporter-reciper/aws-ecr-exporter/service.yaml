@@ -1,0 +1,17 @@
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ecr-exporter
+  name: ecr-exporter
+  namespace: prometheus-stack
+spec:
+  ports:
+    - name: web
+      port: 9000
+      targetPort: 9000
+      protocol: TCP
+  selector:
+    app: ecr-exporter
