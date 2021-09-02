@@ -6,10 +6,10 @@
 ```
 Подставить релиз нейм при локальном рендере темплейта:
 ```bash
-helm template . --name-template myRelease!
+helm template . --name-template myRelease
 ```
 ## Дефолтные значения переменных
-Данный прием выручит, если кто-то забыл (случайно удалели) указать значение переменной в  values.yaml
+Данный прием выручит, если кто-то забыл (случайно удалил) указать значение переменной в  values.yaml
 ```yaml
 spec:
   replicas: {{ .Values.replicas | default 2 }}
@@ -62,7 +62,7 @@ metadata:
 spec:
   replicas: 2
 ```
-Решается с помощью `-` перед блоков flowcontrol:
+Решается с помощью `-` перед блоком:
 ```yaml
 {{- if .Values.annotations }}
   annotations:
