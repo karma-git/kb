@@ -1,0 +1,25 @@
+replicas: 3
+
+image:
+  repository: nginx
+  tag: 1.12
+
+container:
+  containerPort: 80
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  request:
+    cpu: 80m
+    memory: 64Mi
+
+annotations:
+  foor: bar
+  spam: eggs
+
+env:
+  AWS_ACCESS_KEY_ID: AKIAIOSFODNN7EXAMPLE
+  AWS_SECRET_ACCESS_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  AWS_DEFAULT_REGION: us-west-2
