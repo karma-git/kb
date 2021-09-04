@@ -1,0 +1,4 @@
+.DS_Store
+Ansible/*
+aws*
+terraform/*
