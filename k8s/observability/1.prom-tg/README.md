@@ -6,13 +6,13 @@
 - [Кастомного receiver-a](https://github.com/metalmatze/alertmanager-bot) - получаем алерты в телеграм
 
 Если вы не знакомы с архитектурой, предлагаю познакомиться:
-- (Хабр)[https://habr.com/ru/company/southbridge/blog/569860/], перевод (статьи)[https://jonbc.medium.com/] ((github repo)[https://github.com/jonathanbc92/observability-quickstart]автора).
-- (Хорошая презентация)[https://youtu.be/5Jr1v9mWnJc].
+- [Хабр](https://habr.com/ru/company/southbridge/blog/569860/), перевод [статьи](https://jonbc.medium.com/) ([github repo](https://github.com/jonathanbc92/observability-quickstart)автора).
+- [Хорошая презентация](https://youtu.be/5Jr1v9mWnJc).
 
 ## Необходимые зависимости
-- (helm)[https://helm.sh/] v3.6.3
-- (kubectl)[https://kubernetes.io/docs/tasks/tools/] v1.21.3
-- (yq)[https://github.com/mikefarah/yq/] 4.12.0
+- [helm](https://helm.sh/) v3.6.3
+- [kubectl](https://kubernetes.io/docs/tasks/tools/) v1.21.3
+- [yq](https://github.com/mikefarah/yq/) 4.12.0
 
 ## Установка
 Экспортируем переменные окружения.
