@@ -1,0 +1,99 @@
+# --- Deployments ***
+# FastAPI API
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fa
+  name: fa-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fa
+  template:
+    metadata:
+      labels:
+        app: fa
+    spec:
+      containers:
+      - image: karmawow/fastapi:v0.20
+        name: fa
+        ports:
+        - containerPort: 80
+---
+# Flask API
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: flaskapi
+  name: flaskapi-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flaskapi
+  template:
+    metadata:
+      labels:
+        app: flaskapi
+    spec:
+      containers:
+      - image: karmawow/flaskapi:v0.1
+        name: flaskapi
+        ports:
+        - containerPort: 5000
+---
+# --- Services ***
+# Fast API
+apiVersion: v1
+kind: Service
+metadata:
+  name: fa-svc
+  labels:
+    app: fa
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    name: http
+    targetPort: 80
+  selector:
+    app: fa
+---
+# Flask API
+apiVersion: v1
+kind: Service
+metadata:
+  name: flaskapi-svc
+  labels:
+    app: flaskapi
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    name: http
+    targetPort: 5000
+  selector:
+    app: flaskapi
+---
+# --- Ingress Controller
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: app-ing
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /fa(/|$)(.*)
+        backend:
+          serviceName: fa-svc
+          servicePort: 80
+      - path: /flaskapi(/|$)(.*)
+        backend:
+          serviceName: flaskapi-svc
+          servicePort: 80
