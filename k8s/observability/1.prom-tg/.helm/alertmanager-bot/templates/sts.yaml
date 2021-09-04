@@ -1,0 +1,76 @@
+  ---
+  
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appConfig.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: {{ .Values.appConfig.name }}
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.appConfig.name }}
+  namespace:
+  labels:
+    app: {{ .Values.appConfig.name }}
+spec:
+  serviceName: {{ .Values.appConfig.name }}
+  replicas: {{ .Values.appConfig.replicas | default 1 }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appConfig.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appConfig.name }}
+    spec:
+      containers:
+        - name: {{ .Values.appConfig.name }}
+          image: "{{ .Values.appConfig.imageRepository }}:{{ .Values.appConfig.imageVersion }}"
+          imagePullPolicy: IfNotPresent
+{{- if .Values.env }}
+          env:
+          {{- range $key, $val := .Values.env }}
+            - name: {{ $key | quote }}
+              value: {{ $val | quote }}
+          {{- end }}
+{{- end}}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          ports:
+            - containerPort: 8080
+              name: http
+{{- if .Values.env }}
+          args:
+            {{- range $el := .Values.args }}
+            - {{ $el }}
+            {{- end }}
+{{- end}}
+          volumeMounts:
+            - mountPath: {{ .Values.volume.mpath }}
+              name: {{ .Values.volume.name }}
+      restartPolicy: Always
+      volumes:
+        - name: {{ .Values.volume.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.volume.name }}
+    
+  volumeClaimTemplates:
+    - metadata: 
+        name: {{ .Values.volume.name }}
+        namespace: {{ .Values.namespace }}
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 2Gi

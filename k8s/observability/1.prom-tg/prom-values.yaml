@@ -1,0 +1,24 @@
+alertmanager:
+  config:
+    global:
+      resolve_timeout: 5m
+    route:
+      group_by: ['alertname']
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      receiver: 'tg'
+      routes:
+        - receiver: 'null'
+          match:
+            alertname: 'Watchdog'
+        - receiver: 'tg'
+          match_re:
+            alertname: '.*'
+          continue: true
+    receivers:
+      - name: 'null'
+      - name: 'tg'
+        webhook_configs:
+          - send_resolved: true
+            url: 'http://172.17.0.9:8080'

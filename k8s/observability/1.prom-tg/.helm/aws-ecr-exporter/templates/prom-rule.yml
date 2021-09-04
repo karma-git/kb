@@ -1,0 +1,30 @@
+---
+
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  creationTimestamp: null
+  labels:
+    role: alert-rules
+    release: prometheus
+    app: kube-prometheus-stack
+  name: prometheus-rules
+spec:
+  groups:
+    - name: aws-ecr
+      rules:
+        - alert: ecrHighVulnTreshold
+          expr: count(aws_ecr_image_scan_severity_count{severity="HIGH"}) > 0
+          labels:
+            severity: warning
+            namespace: {{ .Values.namespace }}
+          annotations:
+            description: Found one or more docker images with high vulnerability
+
+        - alert: ecrMediumVulnTreshold
+          expr: count(aws_ecr_image_scan_severity_count{severity="MEDIUM"}) > 0
+          labels:
+            severity: warning
+            namespace: {{ .Values.namespace }}
+          annotations:
+            description: Found one or more docker images with medium vulnerability

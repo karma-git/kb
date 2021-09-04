@@ -1,0 +1,7 @@
+---
+
+# reciver https://github.com/metalmatze/alertmanager-bot
+name: tg-reciver
+
+version: 0.1.0
+description: Simple Helm chart for install app

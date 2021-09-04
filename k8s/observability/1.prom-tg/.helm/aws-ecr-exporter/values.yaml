@@ -1,0 +1,26 @@
+---
+
+namespace: prometheus-stack
+
+appConfig:
+  # Used for annotations
+  name: aws-ecr-exporter
+
+  # Docker image
+  imageRepository: "ghcr.io/aws-exporters/prometheus-ecr-exporter"
+  imageVersion: "latest"
+
+  replicas: 1
+
+resources:
+  limits:
+    cpu: 75m
+    memory: 64Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+env:
+  AWS_ACCESS_KEY_ID: id
+  AWS_SECRET_ACCESS_KEY: key
+  AWS_DEFAULT_REGION: region

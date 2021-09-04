@@ -3,20 +3,18 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: ecr-exporter-servicemonitor
+  name: {{ .Values.appConfig.name }}
   # Change this to the namespace the Prometheus instance is running in
-  namespace: prometheus-stack
+  namespace: {{ .Values.namespace }}
   labels:
-    app: ecr-exporter
+    app: {{ .Values.appConfig.name }}
     release: prometheus
 spec:
   selector:
     matchLabels:
-      app: ecr-exporter
+      app: {{ .Values.appConfig.name }}
   endpoints:
   - port: web
-    # interval: 15s
-    # path: /metrics
   namespaceSelector:
     matchNames:
-      - prometheus-stack
+      - {{ .Values.namespace }}

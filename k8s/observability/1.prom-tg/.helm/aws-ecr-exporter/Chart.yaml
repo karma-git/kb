@@ -1,0 +1,7 @@
+---
+
+# exporter https://github.com/aws-exporters/ecr
+name: aws-ecr-exporter
+
+version: 0.1.0
+description: Simple Helm chart for install app

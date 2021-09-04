@@ -1,0 +1,27 @@
+---
+namespace: prometheus-stack
+appConfig:
+  # Used for annotations
+  name: alertmanager-bot
+  # Docker image
+  imageRepository: "metalmatze/alertmanager-bot"
+  imageVersion: "0.4.3"
+  replicas: 1
+resources:
+  limits:
+    cpu: 50m
+    memory: 64Mi
+  requests:
+    cpu: 25m
+    memory: 64Mi
+env:
+  TELEGRAM_ADMIN: telegram_account_id
+  TELEGRAM_TOKEN: telegram_bot_token
+args:
+  - --alertmanager.url=http://172.17.0.6:9093
+  - --log.level=info
+  - --store=bolt
+  - --bolt.path=/data/bot.db
+volume:
+  name: data
+  mpath: /data
