@@ -4,8 +4,6 @@ name: CI
 
 on: [push]
 
-
-
 jobs:
   # https://github.com/ibiqlik/action-yamllint
   lintAllTheThings:
