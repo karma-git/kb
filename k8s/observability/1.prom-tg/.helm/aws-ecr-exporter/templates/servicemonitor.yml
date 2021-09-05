@@ -14,7 +14,7 @@ spec:
     matchLabels:
       app: {{ .Values.appConfig.name }}
   endpoints:
-  - port: web
+    - port: web
   namespaceSelector:
     matchNames:
       - {{ .Values.namespace }}

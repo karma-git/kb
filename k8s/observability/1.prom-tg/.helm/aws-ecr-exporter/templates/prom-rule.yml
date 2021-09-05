@@ -19,7 +19,7 @@ spec:
             severity: warning
             namespace: {{ .Values.namespace }}
           annotations:
-            description: Found one or more docker images with high vulnerability
+            description: Found 1 or more docker images with high vulnerability
 
         - alert: ecrMediumVulnTreshold
           expr: count(aws_ecr_image_scan_severity_count{severity="MEDIUM"}) > 0
@@ -27,4 +27,4 @@ spec:
             severity: warning
             namespace: {{ .Values.namespace }}
           annotations:
-            description: Found one or more docker images with medium vulnerability
+            description: Found 1 or more docker images with medium vulnerability

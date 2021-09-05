@@ -1,9 +1,11 @@
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     app: {{ .Release.Name }}
-  name: {{ .Release.Name }}-deploy
+  name: "{{ .Release.Name }}-deploy"
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -15,7 +17,7 @@ spec:
         app: {{ .Release.Name }}
     spec:
       containers:
-      - image: {{ .Values.container.image }}
-        name: {{ .Release.Name }}
-        ports:
-        - containerPort: {{ .Values.container.port }}
+        - image: {{ .Values.container.image }}
+          name: {{ .Release.Name }}
+          ports:
+            - containerPort: {{ .Values.container.port }}

@@ -1,14 +1,16 @@
+---
+
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ .Release.Name }}-ing
+  name: "{{ .Release.Name }}-ing"
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: {{ .Release.Name }}-svc
-          servicePort: {{ .Values.service.port }}
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: "{{ .Release.Name }}-svc"
+              servicePort: {{ .Values.service.port }}
