@@ -1,5 +1,5 @@
-  ---
-  
+---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -35,8 +35,11 @@ spec:
     spec:
       containers:
         - name: {{ .Values.appConfig.name }}
+          # yamllint disable rule:line-length
           image: "{{ .Values.appConfig.imageRepository }}:{{ .Values.appConfig.imageVersion }}"
+          # yamllint enable rule:line-length
           imagePullPolicy: IfNotPresent
+# yamllint disable
 {{- if .Values.env }}
           env:
           {{- range $key, $val := .Values.env }}
@@ -44,6 +47,7 @@ spec:
               value: {{ $val | quote }}
           {{- end }}
 {{- end}}
+# yamllint enable
           resources:
 {{ toYaml .Values.resources | indent 12 }}
           ports:
@@ -63,9 +67,9 @@ spec:
         - name: {{ .Values.volume.name }}
           persistentVolumeClaim:
             claimName: {{ .Values.volume.name }}
-    
+
   volumeClaimTemplates:
-    - metadata: 
+    - metadata:
         name: {{ .Values.volume.name }}
         namespace: {{ .Values.namespace }}
       spec:

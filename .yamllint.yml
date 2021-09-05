@@ -1,0 +1,19 @@
+---
+
+extends: default
+# How to disable rules inline:
+#   https://yamllint.readthedocs.io/en/stable/disable_with_comments.html
+
+# ignore:
+#   - somefolder/
+
+rules:
+  # line-length:
+  #   max: 120
+  braces:
+    forbid: false
+    min-spaces-inside: 0
+    max-spaces-inside: 2
+  brackets:
+    min-spaces-inside: 0
+    max-spaces-inside: 0
