@@ -18,8 +18,10 @@ spec:
         app: {{ .Values.appConfig.name }}
     spec:
       containers:
-        - image: "{{ .Values.appConfig.imageRepository }}:{{ .Values.appConfig.imageVersion }}"
-          name: {{ .Values.appConfig.name }}
+        - name: {{ .Values.appConfig.name }}
+          # yamllint disable rule:line-length
+          image: "{{ .Values.appConfig.imageRepository }}:{{ .Values.appConfig.imageVersion }}"
+          # yamllint enable rule:line-length
           ports:
             - name: web
               containerPort: 9000
