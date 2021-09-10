@@ -1,4 +1,4 @@
 provider "aws" {
-  profile = "karma-it-aws"
-  region  = "us-east-2"
+  profile = var.profile
+  region  = var.region
 }

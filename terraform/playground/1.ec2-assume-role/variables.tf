@@ -5,3 +5,11 @@ variable "ssh_key_name" {
 variable "ami" {
   type = string
 }
+
+variable "region" {
+  type = string
+}
+
+variable "profile" {
+  type = string
+}
