@@ -7,8 +7,6 @@ ROLE_A_NAME=$3
 # Get role-a arn
 a_arn=$(aws iam list-roles --query "Roles[?RoleName == '$ROLE_A_NAME'].[RoleName, Arn]" --profile "$PROFILE_A" | jq -r '.[][1]')
 
-sleep 10 
-
 # asssume role
 role_assume=$(aws sts assume-role --role-arn "$a_arn" --role-session-name "session" --profile "$PROFILE_B")
 
