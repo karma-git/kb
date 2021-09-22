@@ -33,3 +33,16 @@ Create taint for our special node:
 ```bash
 kubectl taint nodes node4 special=gpu:NoSchedule
 ```
+
+Create resources and chenck on which node pods will be asssigned:
+```bash
+kubectl create -f .
+
+$ kubectl get po -o wide
+NAME                           READY   STATUS              RESTARTS   AGE   IP       NODE    NOMINATED NODE   READINESS GATES
+generic-app-5f4cf6d5d7-7g5qn   0/1     ContainerCreating   0          63s   <none>   node2   <none>           <none>
+generic-app-5f4cf6d5d7-hlfz6   0/1     ContainerCreating   0          63s   <none>   node2   <none>           <none>
+generic-app-5f4cf6d5d7-xqb9t   0/1     ContainerCreating   0          63s   <none>   node2   <none>           <none>
+gpu-app-5979bc5768-c7lrd       0/1     ContainerCreating   0          16s   <none>   node4   <none>           <none>
+gpu-app-5979bc5768-cdxw2       0/1     ContainerCreating   0          16s   <none>   node4   <none>           <none>
+```
