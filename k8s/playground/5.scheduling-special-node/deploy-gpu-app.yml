@@ -1,0 +1,35 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gpu-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gpu-app
+  template:
+    metadata:
+      labels:
+        app: gpu-app
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - node3
+      containers:
+        - name: gpu-app
+          image: nginx
+          ports:
+            - containerPort: 80
+      tolerations:
+        - key: "special"
+          operator: "Equal"
+          value: "gpu"
+          effect: "NoSchedule"
