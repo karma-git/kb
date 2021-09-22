@@ -23,7 +23,7 @@ kubeadm join <kube_api> --token <token> \
 ```
 
 Initialize cluster networking on master node:
-``bash
+```bash
 kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
 ```
 
