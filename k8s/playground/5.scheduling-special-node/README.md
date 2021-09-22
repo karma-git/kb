@@ -27,9 +27,9 @@ Initialize cluster networking on master node:
 kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
 ```
 
-Create 2 worker nodes and join to cluster.
+Create 3 worker nodes and join to cluster.
 
 Create taint for our special node:
 ```bash
-kubectl taint nodes node3 special=gpu:NoSchedule
+kubectl taint nodes node4 special=gpu:NoSchedule
 ```

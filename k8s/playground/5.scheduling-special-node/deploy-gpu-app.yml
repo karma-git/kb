@@ -22,7 +22,7 @@ spec:
                   - key: kubernetes.io/hostname
                     operator: In
                     values:
-                      - node3
+                      - node4
       containers:
         - name: gpu-app
           image: nginx
