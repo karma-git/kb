@@ -6,11 +6,11 @@ provider "aws" {
 
 // VARIABLES
 
-variable REGION {}
+variable "REGION" {}
 
-variable PROFILE {}
+variable "PROFILE" {}
 
-variable KEY_NAME {}
+variable "KEY_NAME" {}
 
 locals {
   PROJECT = "ASG example"
@@ -45,10 +45,10 @@ data "aws_ami" "ubuntu" {
 // RESOURCES
 
 resource "aws_security_group" "this" {
-    name = local.PROJECT
-    vpc_id = data.aws_vpc.default.id
+  name   = local.PROJECT
+  vpc_id = data.aws_vpc.default.id
 
-    ingress {
+  ingress {
     protocol    = "tcp"
     from_port   = 22
     to_port     = 22
@@ -84,10 +84,10 @@ resource "aws_autoscaling_group" "this" {
   }
 
   tags = [
-      {
-        "key"                 = "Project"
-        "value"               = local.PROJECT
-        "propagate_at_launch" = true
-      },
-    ]
+    {
+      "key"                 = "Project"
+      "value"               = local.PROJECT
+      "propagate_at_launch" = true
+    },
+  ]
 }
