@@ -52,3 +52,11 @@ gcloud beta compute --project=<project_name> instances create <instance_name> \
 - веб-терминал Cloud Console (GCP генерирует ключи).
 - с помощью gcloud cli в вашем терминале -> `gcloud beta compute ssh --zone <zone> <name>  --project "project id"`
 -  прокинуть публичный ключ на вм-ке и зайти со своим ключом через public ip.
+
+## GKE
+
+Получить кубконфиг. [Дока](https://cloud.google.com/sdk/gcloud/reference/container/clusters/get-credentials).
+
+```bash
+gcloud container clusters get-credentials gke --zone=us-west3-a
+```
