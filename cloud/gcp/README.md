@@ -55,8 +55,17 @@ gcloud beta compute --project=<project_name> instances create <instance_name> \
 
 ## GKE
 
+Создать кластер (ноды e2-medium - 2vcpu; 4gbram):
+```bash
+$ gcloud container clusters create gke --num-nodes=2
+```
+
 Получить кубконфиг. [Дока](https://cloud.google.com/sdk/gcloud/reference/container/clusters/get-credentials).
 
 ```bash
 gcloud container clusters get-credentials gke --zone=us-west3-a
 ```
+
+Создать [конфиг](https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication#environments-without-gcloud) для окружения без gcloud
+
+[Ингресс](https://cloud.google.com/community/tutorials/nginx-ingress-gke)
