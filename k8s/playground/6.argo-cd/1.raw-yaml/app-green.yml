@@ -4,7 +4,6 @@ kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
   name: app-green
-  # works well only in argocd namespace
   namespace: argocd
 spec:
   project: default
