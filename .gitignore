@@ -1,3 +1,5 @@
 .DS_Store
 Ansible/*
 terraform/*
+**/.vagrant
+environment/**/roles

@@ -1,0 +1,7 @@
+---
+
+- hosts: all
+  vars_files:
+    - "{{ playbook_dir }}/vars/oh-my-zsh.yml"
+  roles:
+    - role: gantsign.antigen
