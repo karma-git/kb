@@ -8,10 +8,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: >-
-      https://github.com/karma-git/DevOps-Playground.git
+    repoURL: https://github.com/karma-git/DevOps-Playground.git
     targetRevision: master
-    path: ./k8s/playground/6.argo-cd/1.raw-yaml/manifests
+    path: ./k8s/playground/6.argo-cd/1.raw-or-helm/blue-raw
     directory:
       recurse: true
   destination:

@@ -1,0 +1,23 @@
+---
+
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: loki
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/karma-git/DevOps-Playground.git
+    targetRevision: master
+    path: ./k8s/playground/6.argo-cd/1.raw-or-helm/green-helm
+    chart: green
+    helm:
+      ValuesFiles: ["values.yaml"]
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  revisionHistoryLimit: 3

@@ -2,26 +2,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deploy-green
-  namespace: green
+  name: nginx-blue
+  namespace: blue
 spec:
   selector:
     matchLabels:
-      app: nginx-deploy-green
+      app: nginx-blue
   template:
     metadata:
       labels:
-        app: nginx-deploy-green
+        app: nginx-blue
     spec:
       volumes:
-        - name: webdata
+        - name: nginx-blue-config
           configMap:
-            name: index-html
+            name: nginx-blue-config
       containers:
-      - name: nginx-deploy-green
+      - name: nginx-blue
         image: nginx
         ports:
         - containerPort: 80
         volumeMounts:
           - mountPath: /usr/share/nginx/html
-            name: webdata
+            name: nginx-blue-config

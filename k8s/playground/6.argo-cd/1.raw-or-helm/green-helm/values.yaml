@@ -1,0 +1,15 @@
+---
+namespace: green
+
+appConfig:
+  # Used for annotations
+  name: nginx-green
+  # Docker image
+  imageRepository: "nginx"
+  imageVersion: "latest"
+  containerPort: 80
+  mountPath: "/usr/share/nginx/html"
+
+volumeName: "nginx-green-config"
+configMapName: "nginx-green-config"
+configData: "<h1>I am <font color=green>GREEN</font></h1>"

@@ -3,6 +3,6 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: green
+  name: blue
   labels:
-    name: green
+    name: blue
