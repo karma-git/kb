@@ -13,7 +13,7 @@ spec:
     path: ./k8s/playground/6.argo-cd/1.raw-or-helm/green-helm
     chart: green
     helm:
-      valuesFiles: ["values.yaml"]
+      valueFiles: ["values.yaml"]
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
