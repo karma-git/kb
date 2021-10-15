@@ -3,10 +3,10 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: loki
+  name: app-green
   namespace: argocd
 spec:
-  project: platform
+  project: default
   source:
     repoURL: https://github.com/karma-git/DevOps-Playground.git
     targetRevision: master
