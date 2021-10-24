@@ -1,0 +1,47 @@
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-pod
+  namespace: base
+spec:
+  podSelector:
+    matchLabels:
+      run: test
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              type: dev
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: default-deny
+  namespace: base
+spec:
+  podSelector:
+    matchLabels: {}
+...
+# Block via Egress
+# Also need label for ns base
+# $ kubectl label ns base type=base
+# ---
+# kind: NetworkPolicy
+# apiVersion: networking.k8s.io/v1
+# metadata:
+#   name: deny-base
+#   namespace: dev
+# spec:
+#   policyTypes:
+#     - Egress
+#   podSelector:
+#     matchLabels: {}
+#   egress:
+#     - to:
+#         - podSelector:
+#             matchLabels:
+#               run: test
+#             namespaceSelector:
+#               matchLabels:
+#                 type: base
