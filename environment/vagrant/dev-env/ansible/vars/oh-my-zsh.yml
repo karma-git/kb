@@ -9,7 +9,8 @@ users:
           DISABLE_AUTO_UPDATE: '"true"'
 
     antigen_theme:
-      name: amuse
+      # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#aussiegeek
+      name: aussiegeek
     antigen_bundles:            
       - name: git
       - name: zsh-autosuggestions
