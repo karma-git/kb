@@ -1,0 +1,19 @@
+# Declaring the user list
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: test-auth
+spec:
+  basicAuth:
+    secret: authsecret
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: authsecret
+  namespace: default
+
+data:
+  users: |2
+    __BASE64_SECRET__|
