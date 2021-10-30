@@ -18,7 +18,7 @@ spec:
         spec:
           containers:
             - name: selecter
-              image: docker pull jbergknoff/postgresql-client
+              image: jbergknoff/postgresql-client
               args:
                 - SELECT title FROM crud_post;
               env:
