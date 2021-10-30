@@ -1,0 +1,83 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: crud
+spec:
+  selector:
+    app: crud
+  ports:
+  - port: 80
+    targetPort: 8000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crud
+spec:
+  selector:
+    matchLabels:
+      app: crud
+  template:
+    metadata:
+      labels:
+        app: crud
+    spec:
+      containers:
+      - name: crud
+        image: crud:latest
+        # env
+        env:
+          - name: PGDATABASE
+            value: postgres
+          - name: PGUSER
+            value: postgres
+          - name: PGPASSWORD
+            secretKeyRef:
+              name: pg-secret
+              value: POSTGRES_PASSWORD
+        # resources
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "100m"
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
+        # probes
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /ht/
+            port: 80
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /ht/
+            port: 80
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+          initialDelaySeconds: 10
+        startupProbe:
+          httpGet:
+            path: /ht/
+            port: 80
+          failureThreshold: 30
+          periodSeconds: 10
+        ports:
+          - containerPort: 8000
+        # volumes
+        volumeMounts:
+            - name: code
+              mountPath: /home/app
+      # worker node in minikube
+      # minikube mount .://home/app # -> run this from folder with manage.py
+      volumes:
+        - name: code
+          hostPath:
+            path: /home/app

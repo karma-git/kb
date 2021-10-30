@@ -1,0 +1,38 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: delete-table-job
+spec:
+  schedule: "*/1 * * * *"
+  # schedule: "59 23 31 12 6"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 60
+  failedJobsHistoryLimit: 2
+  successfulJobsHistoryLimit: 2
+  suspend: true  # that mean what job will never run
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      activeDeadlineSeconds: 120
+      ttlSecondsAfterFinished: 300
+      template:
+        spec:
+          containers:
+            - name: deleter
+              image: alpine
+              command: ["sh", "-c"]
+              args: ["echo Drop Table"]
+              # image: jbergknoff/postgresql-client
+              # args:
+              #   - DROP TABLE crud_post;
+              # env:
+              #   - name: PGDATABASE
+              #     value: postgres
+              #   - name: PGUSER
+              #     value: postgres
+              #   - name: PGPASSWORD
+              #     secretKeyRef:
+              #       name: pg-secret
+              #       value: POSTGRES_PASSWORD
+          restartPolicy: Never

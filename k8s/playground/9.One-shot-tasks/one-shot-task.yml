@@ -1,0 +1,27 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: makemigrations
+spec:
+  backoffLimit: 2
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+        containers:
+        - name: makemigrations
+          image: crud:latest
+          command: ["sh", "-c"]
+          args:
+            - python3 manage.py migrate
+            - python3 manage.py loaddata crud/fixtures/post.json
+          env:
+            - name: PGDATABASE
+              value: postgres
+            - name: PGUSER
+              value: postgres
+            - name: PGPASSWORD
+              secretKeyRef:
+                name: pg-secret
+                value: POSTGRES_PASSWORD
+        restartPolicy: Never

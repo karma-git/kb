@@ -1,0 +1,33 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: select-job
+spec:
+  schedule: "*/5 * * * *"
+  concurrencyPolicy: Allow
+  startingDeadlineSeconds: 25
+  failedJobsHistoryLimit: 2
+  successfulJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      activeDeadlineSeconds: 60
+      ttlSecondsAfterFinished: 80
+      template:
+        spec:
+          containers:
+            - name: selecter
+              image: docker pull jbergknoff/postgresql-client
+              args:
+                - SELECT title FROM crud_post;
+              env:
+                - name: PGDATABASE
+                  value: postgres
+                - name: PGUSER
+                  value: postgres
+                - name: PGPASSWORD
+                  secretKeyRef:
+                    name: pg-secret
+                    value: POSTGRES_PASSWORD
+          restartPolicy: Never
