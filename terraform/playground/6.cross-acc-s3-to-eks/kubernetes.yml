@@ -1,0 +1,64 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-s3-eks-cm
+  namespace: default
+data:
+  config: |-
+    [profile eks]
+    role_arn = __EKS_ROLE_ARN__
+    web_identity_token_file = /var/run/secrets/eks.amazonaws.com/serviceaccount/token
+    [profile s3]
+    role_arn = __S3_ROLE_ARN__
+    source_profile = eks
+    role_session_name = eks
+...
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: demo-s3-eks-sa
+  namespace: default
+  annotations:
+    eks.amazonaws.com/role-arn: '__EKS_ROLE_ARN__'
+automountServiceAccountToken: true
+...
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-s3-eks-deploy
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: demo-s3-eks-deploy
+  template:
+    metadata:
+      labels:
+        app: demo-s3-eks-deploy
+    spec:
+      serviceAccountName: demo-s3-eks-sa
+      containers:
+      - name: aws-cli
+        image: amazon/aws-cli
+        command:
+        - "sh"
+        - "-c"
+        - "sleep 600"
+        volumeMounts:
+        - name: aws-config
+          mountPath: /root/.aws/config
+          subPath: config
+        env:
+          - name: AWS_PROFILE
+            value: s3
+      volumes:
+        - name: aws-config
+          configMap:
+            name: demo-s3-eks-cm
+            items:
+            - key: "config"
+              path: "config"
+...
