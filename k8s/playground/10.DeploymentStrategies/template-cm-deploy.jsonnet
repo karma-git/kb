@@ -108,7 +108,7 @@ local app = import 'utils.libsonnet';
           },
         },
       },
-    } 
+    },
   ],
   kind: 'List',
   metadata: {

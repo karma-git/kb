@@ -63,8 +63,6 @@ clear cluster:
 make teardown
 ```
 
-ref: https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/
-
 # a-b/canary
 
 Create resources
@@ -111,3 +109,4 @@ Clear resources:
 ```shell
 make teardown
 ```
+Read more about canary in [ingress controller annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)

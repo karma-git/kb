@@ -46,7 +46,7 @@ function(canary=false) {
         externalName: std.format('%s.%s.svc.cluster.local', [objName(), app.namespace],),
       },
     },
-    // Ingress release / stable 
+    // Ingress release / stable
     (
       if canary then {
         apiVersion: 'networking.k8s.io/v1',
@@ -55,8 +55,8 @@ function(canary=false) {
           name: objName(),
           namespace: 'kube-system',
           labels: {
-          app: app.name,
-        },
+            app: app.name,
+          },
           annotations: {
             'nginx.ingress.kubernetes.io/canary': 'true',
             'nginx.ingress.kubernetes.io/canary-by-cookie': 'tester',
@@ -86,42 +86,42 @@ function(canary=false) {
             },
           ],
         },
-      } else  {
-      apiVersion: 'networking.k8s.io/v1',
-      kind: 'Ingress',
-      metadata: {
-        name: objName(),
-        namespace: 'kube-system',
-        labels: {
-          app: app.name
+      } else {
+        apiVersion: 'networking.k8s.io/v1',
+        kind: 'Ingress',
+        metadata: {
+          name: objName(),
+          namespace: 'kube-system',
+          labels: {
+            app: app.name,
+          },
         },
-      },
-      spec: {
-        ingressClassName: 'nginx',
-        rules: [
-          {
-            host: std.format('%s.%s', [app.name, app.LocalDNS]),
-            http: {
-              paths: [
-                {
-                  pathType: 'Prefix',
-                  path: '/',
-                  backend: {
-                    service: {
-                      name: objName(),
-                      port: {
-                        number: app.port,
+        spec: {
+          ingressClassName: 'nginx',
+          rules: [
+            {
+              host: std.format('%s.%s', [app.name, app.LocalDNS]),
+              http: {
+                paths: [
+                  {
+                    pathType: 'Prefix',
+                    path: '/',
+                    backend: {
+                      service: {
+                        name: objName(),
+                        port: {
+                          number: app.port,
+                        },
                       },
                     },
                   },
-                },
-              ],
+                ],
+              },
             },
-          },
-        ],
-      },
-    }
-    ) 
+          ],
+        },
+      }
+    ),
   ],
   kind: 'List',
   metadata: {
