@@ -19,12 +19,14 @@
 
 > Site Reliability Engineering is a discipline that incorporates aspects of
 software engineering and applies them to infrastructure and operations problems.
-https://en.wikipedia.org/wiki/Site_Reliability_Engineering
+>
+> https://en.wikipedia.org/wiki/Site_Reliability_Engineering
 
 
 > SRE’s approach to this is to apply a software engineering mindset to
 system administration topics
-https://www.scalyr.com/blog/what-is-sre/
+>
+> https://www.scalyr.com/blog/what-is-sre/
 
 > ... what happens when you ask a software engineer to design an
 operations function.
