@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "heads-tails"
+version = "0.1.0"
+authors = ["AndreW Horbach <andrewhorbach@gmail.com>"]
+description = "HEADS & TAILS game"
+keywords = ["python3", "package","pypi"]
+readme = "README.md"
+license = "WTFPL"
+homepage = "https://github.com/karma-git/playground/11.pypi"
+repository = "https://github.com/karma-git/playground"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+click = "^8.0.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+ht = "heads_tails.main:head_tails"

@@ -1,0 +1,5 @@
+# defaults: https://github.com/owkin/charts/tree/master/pypiserver
+
+# overwrite to allow publish packages w/o auth
+auth:
+  actions: ''

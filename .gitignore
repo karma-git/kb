@@ -3,3 +3,5 @@ Ansible/*
 terraform/*
 **/.vagrant
 environment/**/roles
+__pycache__
+dist
