@@ -6,10 +6,11 @@ Need to store and share python packages privatly.
 
 ```shell
 $ minikube start
+$ minikube image build . -t pypi-server:v1.4.2
 $ kubectl create namespace pypiserver
 $ helm repo add owkin https://owkin.github.io/charts
 # helm show values owkin/pypiserver > pypiserver-values.yaml
-$ helm -n pypiserver upgrade --install pypiserver owkin/pypiserver
+$ helm -n pypiserver upgrade --install pypiserver owkin/pypiserver -f pypiserver-values.yaml
 #  watch kubectl -n pypiserver get po
 $ kubectl -n pypiserver port-forward svc/pypiserver-pypiserver 8080:8080
 ```
@@ -27,6 +28,7 @@ poetry config repositories.minikube http://127.0.0.1:8080
 
 Build and publish package:
 ```shell
+cd heads-tails
 poetry publish --repository minikube --build
 ```
 > !NOTE: you should press enter on username

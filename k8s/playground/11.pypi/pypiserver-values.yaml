@@ -1,5 +1,29 @@
 # defaults: https://github.com/owkin/charts/tree/master/pypiserver
 
+image:
+  # local image from minikube
+  repository: pypi-server
+  tag: v1.4.2
+
 # overwrite to allow publish packages w/o auth
 auth:
   actions: ''
+
+persistence:
+  enabled: true
+  storageClass: standard  # default minikube storageClass
+  size: 8Gi
+
+securityContext:
+  runAsUser: 10001
+  runAsGroup: 10001
+  fsGroup: 10001
+
+resources:
+  # We want to guaranteed QoS, becouse with pv RWO we could not make some HA and forced to run one instance of the app
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
