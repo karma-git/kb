@@ -1,63 +1,66 @@
-from pyzabbix import ZabbixAPI
-
+import logging
 # ref: https://www.zabbix.com/documentation/current/en/manual/api
+from pyzabbix import ZabbixAPI, ZabbixAPIException
 
-zapi = ZabbixAPI("http://127.0.0.1:8080/")
-zapi.login("Admin", "zabbix")
+HOST = "Zabbix server"  # default zabbix server hostname
 
-HOST = "Zabbix server"
-
-ITEM_TEMPLATE = {
-    # ref: https://www.zabbix.com/documentation/current/en/manual/api/reference/item/object#host
-    "delay": "1m",
-    "hostid": "",
-    "interfaceid": "",
-    "key_": "mX",
-    "name": "important_metrics[metricX]",
-    "type": 21,  # Script
-    "value_type": 3,  # numeric unsigned
-    "params": "return Math.floor(Math.random() * 100);",
-    "timeout": "5s",
-    "tags": [{"tag": "Project", "value": ""}],
-    "description": "the item generates random integer in range(0, 100)",
-}
-
-TRIGGER_TEMPLATE = {
-    # ref: https://www.zabbix.com/documentation/current/en/manual/api/reference/trigger/object#trigger
-    "description": "mX-trigger",
-    "expression": f"last(/{HOST}/mX)>95",
-    "comments": "I guess what it will resolve itself",
-    "priority": 5,  # severity: disaster
-    "tags": [{"tag": "Project", "value": ""}],
-}
+logging.basicConfig(level=logging.INFO)
 
 
-def get_host_interface_ids(host_name: str = HOST) -> tuple:
-    host_object = zapi.host.get(filter={"host": host_name, "name": host_name})
+def get_host_and_interface_id(zabbix_api: ZabbixAPI, host_name: str = HOST) -> tuple:
+    host_object = zabbix_api.host.get(filter={"host": host_name, "name": host_name})
     host_id = host_object[0]["hostid"]
-    host_interface_object = zapi.hostinterface.get(hostids=host_id)
+    host_interface_object = zabbix_api.hostinterface.get(hostids=host_id)
     host_interface_id = host_interface_object[0]["interfaceid"]
+    logging.debug(f"host=<{HOST}>, has id=<{host_id}>, interface_id={host_interface_id}")
     return host_id, host_interface_id
 
 
-def create_item():
-    pass
+def create_task_item(zabbix_api: ZabbixAPI, host_id: str, interface_id: str, identificator: int) -> None:
+    try:
+        zabbix_api.item.create(
+            delay="1m",
+            hostid=host_id,
+            interfaceid=interface_id,
+            key_=f"metric{identificator}",
+            name=f"important_metric[metric{identificator}]",
+            type=21,       # Script
+            value_type=3,  # numeric unsigned
+            params="return Math.floor(Math.random() * 100);",
+            timeout="5s",
+            tags=[{"tag": "Project", "value": "observability"}],
+            description="the item generates random integer in range(0, 100)",
+        )
+    except ZabbixAPI:
+        logging.exception("Exception occurred")
+    else:
+        logging.info(f"item with identificator=<{identificator}> has just been created")
 
 
-def create_trigger():
-    pass
+def create_task_trigger(zabbix_api: ZabbixAPI, identificator: int):
+    try:
+        zabbix_api.trigger.create(
+            description=f"metric{identificator}-trigger",
+            expression=f"last(/{HOST}/metric{identificator})>95",
+            comments="It will be triggered if the last metric value is higher than 95",
+            priority=5,  # severity: disaster
+            tags=[{"tag": "Project", "value": "observability"}],
+        )
+    except ZabbixAPI:
+        logging.exception("Exception occurred")
+    else:
+        logging.info(f"trigger with identificator=<{identificator}> has just been created")
 
 
 def main(host: str = HOST) -> None:
-    host_id, int_id = get_host_interface_ids()
-    ITEM_TEMPLATE.update({"hostid": host_id, "interfaceid": int_id})
-    for i in range(1, 4):
-        z_key = f"important_metrics[metric{i}]"
-        ITEM_TEMPLATE.update({"key_": f"m{i}", "name": z_key})
-        zapi.item.create(**ITEM_TEMPLATE)
+    zapi = ZabbixAPI("http://127.0.0.1:8080/")
+    zapi.login("Admin", "zabbix")
+    logging.info(zapi.api_version())
 
-        TRIGGER_TEMPLATE.update({"expression": f"last(/{host}/m{i})>95"})
-        zapi.trigger.create(**TRIGGER_TEMPLATE)
+    host_id, int_id = get_host_and_interface_id(zapi, host)
+    for i in range(1, 4):
+        create_task_item(zapi, host_id, int_id, i)
+        create_task_trigger(zapi, i)
 
 
 if __name__ == "__main__":
