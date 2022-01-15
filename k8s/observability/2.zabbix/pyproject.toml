@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "zabbix"
+version = "0.1.0"
+description = "zabbix init"
+authors = ["Andrew Horbach <andrewhorbach@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pyzabbix = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
