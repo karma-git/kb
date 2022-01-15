@@ -43,6 +43,7 @@ important_metrics\[metric3\]
 
 ### TG
 - https://blog.mailon.com.ua/%D1%83%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BE%D1%82-zabbix-%D0%B2-telegram/
+- https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/templates/media/telegram
 
 ### LLD
 - https://www.zabbix.com/documentation/current/ru/manual/discovery/low_level_discovery
@@ -50,32 +51,10 @@ important_metrics\[metric3\]
 ## Zab install
 ```shell
 minikube start --cpus=2 --memory=2gb --disk-size=20gb --vm-driver=hyperkit
+minikube image build . -t zabbix:ubuntu-5.4.5
 helm repo add cetic https://cetic.github.io/helm-charts
 helm repo update
 kubectl create ns monitoring
-helm -n monitoring install zabbix cetic/zabbix --dependency-update
+helm -n monitoring upgrade --install zabbix cetic/zabbix --dependency-update -f zabbix-values.yml
 kubectl -n monitoring port-forward svc/zabbix-zabbix-web 8080:80
 ```
-
-Core Item:
-```js
-var Metrics = {
-   "data":[
-      {
-         "{#CASE}":1
-      },
-      {
-         "{#CASE}":2
-      },
-      {
-         "{#CASE}":3
-      }
-   ]
-};
-
-return JSON.stringify(Metrics);
-```
-
-http://127.0.0.1:8080/ `Admin:zabbix`
-
-last(/MyTemplate/m[{#CASE}])>95

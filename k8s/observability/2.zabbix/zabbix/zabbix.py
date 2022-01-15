@@ -1,10 +1,24 @@
+import os.path
 import logging
+import yaml
 # ref: https://www.zabbix.com/documentation/current/en/manual/api
 from pyzabbix import ZabbixAPI, ZabbixAPIException
 
 HOST = "Zabbix server"  # default zabbix server hostname
 
 logging.basicConfig(level=logging.INFO)
+
+
+def get_config(relative_path: str = os.path.dirname(__file__) + '/../config.yml' ) -> dict:
+    try:
+        with open(relative_path, "r") as stream:
+            config = yaml.safe_load(stream)
+    except FileNotFoundError:
+        logging.exception("Please make sure that you running script from the directory with script and config")
+    except yaml.YAMLError as e:
+        logging.exception(f"Looks like yaml invalid -> {e}")
+    else:
+        return config
 
 
 def get_host_and_interface_id(zabbix_api: ZabbixAPI, host_name: str = HOST) -> tuple:
@@ -52,9 +66,9 @@ def create_task_trigger(zabbix_api: ZabbixAPI, identificator: int):
         logging.info(f"trigger with identificator=<{identificator}> has just been created")
 
 
-def main(host: str = HOST) -> None:
-    zapi = ZabbixAPI("http://127.0.0.1:8080/")
-    zapi.login("Admin", "zabbix")
+def main(url: str, login: str, passowrd: str, host: str) -> None:
+    zapi = ZabbixAPI(url)
+    zapi.login(login, passowrd)
     logging.info(zapi.api_version())
 
     host_id, int_id = get_host_and_interface_id(zapi, host)
@@ -62,6 +76,11 @@ def main(host: str = HOST) -> None:
         create_task_item(zapi, host_id, int_id, i)
         create_task_trigger(zapi, i)
 
-
 if __name__ == "__main__":
-    main()
+    conf = get_config().get('zabbix')
+    main(
+        url=conf['url'],
+        login=conf['login'],
+        passowrd=conf['password'],
+        host=conf['host'],
+    )

@@ -1,0 +1,12 @@
+---
+zabbix:
+  url: http://127.0.0.1:8080/
+  host: Zabbix server
+  login: Admin
+  password: zabbix
+  api-version: 5
+telegram:
+  # !NOTE: be careful with token, it is a secret (k8s secrets could be decoded, so I let it as plain text)
+  token: qwerty
+  signature: false
+  tmp-dir: /tmp/
