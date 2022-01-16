@@ -32,9 +32,11 @@ important_metrics\[metric3\]
 0 баллов: задание не выполнено
 
 1 балл: задание выполнено полностью
+
 # Выполнение
 
-## Links:
+<details>
+<summary>Links</summary>
 
 ### User parameters
 - https://sbcode.net/zabbix/user-parameters/
@@ -48,13 +50,30 @@ important_metrics\[metric3\]
 ### LLD
 - https://www.zabbix.com/documentation/current/ru/manual/discovery/low_level_discovery
 
+</details>
+
 ## Zab install
+
 ```shell
-minikube start --cpus=2 --memory=2gb --disk-size=20gb --vm-driver=hyperkit
-minikube image build . -t zabbix:ubuntu-5.4.5
-helm repo add cetic https://cetic.github.io/helm-charts
-helm repo update
-kubectl create ns monitoring
-helm -n monitoring upgrade --install zabbix cetic/zabbix --dependency-update -f zabbix-values.yml
-kubectl -n monitoring port-forward svc/zabbix-zabbix-web 8080:80
+make install-zabbix
 ```
+## Zabbix configure
+
+```shell
+poetry install
+make py-zabbix
+```
+
+## future manually steps
+> I faced an issue with user.update (mediatype) view, so this step should be done manually
+Go to Administration -> Users -> 'Admin' -> Media -> add `Telegram` and put into sendto field your `Telegram ID`.
+
+Then go to Configration -> Actions -> Trigger Actions and enable check mark for `Report problems to Zabbix administrators`.
+
+# Result
+You should recive an alert soon:
+<details>
+<summary>Alert</summary>
+
+![img](./docs/alert.png)
+</details>

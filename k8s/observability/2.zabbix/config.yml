@@ -7,6 +7,5 @@ zabbix:
   api-version: 5
 telegram:
   # !NOTE: be careful with token, it is a secret (k8s secrets could be decoded, so I let it as plain text)
-  token: qwerty
-  signature: false
-  tmp-dir: /tmp/
+  id: <YOUR_TG_ID>
+  token: <YOUR_BOT_TOKEN>
