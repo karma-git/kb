@@ -1,0 +1,14 @@
+---
+# ref: https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+grafana:
+  adminPassword: qwerty
+  service:
+    type: NodePort
+
+alertmanager:
+  service:
+    type: NodePort
+
+prometheus:
+  service:
+    type: NodePort
