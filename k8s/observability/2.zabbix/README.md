@@ -66,9 +66,10 @@ make py-zabbix
 
 ## future manually steps
 > I faced an issue with user.update (mediatype) view, so this step should be done manually
-Go to Administration -> Users -> 'Admin' -> Media -> add `Telegram` and put into sendto field your `Telegram ID`.
-
-Then go to Configration -> Actions -> Trigger Actions and enable check mark for `Report problems to Zabbix administrators`.
+>
+> Go to Administration -> Users -> 'Admin' -> Media -> add `Telegram` and put into sendto field your `Telegram ID`.
+>
+> Then go to Configration -> Actions -> Trigger Actions and enable check mark for `Report problems to Zabbix administrators`.
 
 # Result
 You should recive an alert soon:
