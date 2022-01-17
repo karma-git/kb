@@ -25,6 +25,8 @@ metrics:
     enabled: true
     namespace: prometheus-stack
     interval: 15s
+    additionalLabels:
+      release: prometheus
 
 # --- network policy (default)
 
