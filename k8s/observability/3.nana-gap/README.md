@@ -11,10 +11,10 @@ make all
 ```
 
 Endpoints:
-- [http://127.0.0.1:9216/metrics](MongoDB exporter)
-- [http://127.0.0.1:3000/](Grafana)
-- [http://127.0.0.1:9093/](AlertManager)
-- [http://127.0.0.1:9090/](Prometheus)
+- [MongoDB exporter](http://127.0.0.1:9216/metrics)
+- [Grafana](http://127.0.0.1:3000/)
+- [AlertManager](http://127.0.0.1:9093/)
+- [Prometheus](http://127.0.0.1:9090/)
 
 <details>
 
