@@ -1,7 +1,7 @@
 all: init install port-forwarding
 init: minikube-create helm-init
 install: mongo-install prometheus-install
-port-forwarding: mogngo-port-forwarding
+port-forwarding: mogngo-port-forwarding gap-port-forwarding
 clean: kill-all-pf delete
 
 minikube-create:

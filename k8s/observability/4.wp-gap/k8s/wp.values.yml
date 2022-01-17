@@ -1,0 +1,83 @@
+# ref: https://github.com/bitnami/charts/blob/master/bitnami/wordpress/values.yaml
+
+image:
+  debug: true
+
+wordpressUsername: admin
+wordpressPassword: qwerty
+
+wordpressFirstName: Andrew
+wordpressLastName: Horbach
+wordpressBlogName: Andrew Horbach's Blog!
+
+# --- wp app
+
+service:
+  # NOTE: need nodeport for ingress dns
+  type: NodePort
+
+# --- prom metrics
+
+metrics:
+  enabled: true
+
+  serviceMonitor:
+    enabled: true
+    namespace: prometheus-stack
+    interval: 15s
+    additionalLabels:
+      release: prometheus
+
+# --- network policy (default)
+
+networkPolicy:
+  enabled: false
+  metrics:
+    enabled: false
+    ## e.g:
+    ## podSelector:
+    ##   label: monitoring
+    ##
+    podSelector: {}
+    ## e.g:
+    ## namespaceSelector:
+    ##   label: monitoring
+    ##
+    namespaceSelector: {}
+
+# --- DB (default)
+
+mariadb:
+  # TODO: expose db metrics
+  enabled: true
+
+  architecture: standalone
+  auth:
+    rootPassword: "mariadb"
+    database: bitnami_wordpress
+    username: bn_wordpress
+    password: "mariadb"
+  primary:
+    persistence:
+      enabled: true
+      storageClass: standard
+      accessModes:
+        - ReadWriteOnce
+      size: 8Gi
+
+externalDatabase:
+  host: localhost
+  port: 3306
+  user: bn_wordpress
+  password: "mariadb"
+  database: bitnami_wordpress
+  existingSecret: ""
+
+memcached:
+  # TODO: enable memdb
+  enabled: false
+  service:
+    port: 11211
+externalCache:
+  host: localhost
+  port: 11211
