@@ -1,0 +1,91 @@
+---
+
+site_name: Awesome Docs
+site_url: ""
+site_description: Awesome Docs Example Static Site
+site_author: "@karma-git"
+
+repo_url: https://github.com/karma-git/awesome-docs.git
+edit_uri: ""
+
+theme:
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  name: material
+  locale: en
+  highlightjs: true
+  hljs_languages:
+    - yaml
+  features:
+    - content.code.annotate
+    - content.tabs.link
+
+markdown_extensions:
+  # Abbreviations
+  - abbr
+  # Admonitions
+  - admonition
+  - pymdownx.details
+  # Annotations, Images
+  - attr_list
+  - md_in_html
+  # Code blocks
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  # Content tabs
+  - pymdownx.tabbed:
+      alternate_style: true
+  # Data tables
+  - tables
+  # Footnotes
+  - footnotes
+  # Formatting
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  # Icons + Emojis
+  - pymdownx.emoji
+  # Lists
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  # Union:
+  - pymdownx.snippets
+  # Admonitions, Annotations, Code blocks, Content tabs, Diagrams(Meramid)
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+
+nav:
+  - Home: index.md
+  - H1:
+      - H2A:
+          - Page 1: p1.md
+          - Page 2: p2.md
+      - H2B: h2b.md
+      # ... etc
+
+plugins:
+  - search
+  - mermaid2:
+      version: 8.8.2
+
+extra_css:
+  - extras/extra.css
+
+extra_javascript:
+  - https://unpkg.com/mermaid@8.8.2/dist/mermaid.min.js
