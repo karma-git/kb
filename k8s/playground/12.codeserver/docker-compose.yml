@@ -1,0 +1,24 @@
+---
+version: "2.1"
+services:
+  code-server:
+    # image: lscr.io/linuxserver/code-server
+    image: karmawow/code-server
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Moscow
+      - PASSWORD=codeserverpw
+      - SUDO_PASSWORD=codeserverpw
+      - DEFAULT_WORKSPACE=/config/workspace
+    volumes:
+      - ./:/config/workspace
+    ports:
+      - 8443:8443
+      - 8080:8080
+      - 3000:3000
+    restart: unless-stopped
