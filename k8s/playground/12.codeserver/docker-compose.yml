@@ -9,15 +9,16 @@ services:
       dockerfile: Dockerfile
     container_name: code-server
     environment:
-      - PUID=10001
-      - PGID=10001
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/Moscow
       - PASSWORD=codeserverpw
       - SUDO_PASSWORD=codeserverpw
-      # ref: https://github.com/coder/code-server/blob/main/docs/FAQ.md#can-i-store-my-password-hashed
       - DEFAULT_WORKSPACE=/config/workspace
     volumes:
       - ./:/config/workspace
     ports:
       - 8443:8443
+      - 8080:8080
+      - 3000:3000
     restart: unless-stopped
