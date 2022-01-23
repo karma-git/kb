@@ -1,6 +1,6 @@
 variable "ami_version_suffix" {
   type    = string
-  default = "v3"
+  default = "v6"
 }
 
 locals {
@@ -46,4 +46,6 @@ build {
   provisioner "ansible" {
     playbook_file = "./ansible/playbook.yml"
   }
+
+  post-processor "vagrant" {}
 }
