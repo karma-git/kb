@@ -1,3 +1,12 @@
+variable "ami_version_suffix" {
+  type    = string
+  default = "v3"
+}
+
+locals {
+  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
+}
+
 packer {
   required_plugins {
     amazon = {
@@ -8,7 +17,7 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "learn-packer-linux-aws-v2"
+  ami_name      = "learn-packer-linux-aws-${var.ami_version_suffix}-${local.timestamp}"
   instance_type = "t2.micro"
   region        = "us-west-2"
   source_ami_filter {

@@ -45,3 +45,22 @@ ami-02e51fc4092022bf4
 ami-096b13b8c8ff5db12
 ```
 </details>
+
+## [Variables](https://learn.hashicorp.com/tutorials/packer/aws-get-started-variables?in=packer/aws-get-started)
+
+HCL variables in packer template.
+
+<details>
+<summary>AMI ids</summary>
+
+```shell
+❯ aws ec2 describe-images \      
+    --filters "Name=tag:Name,Values='Packer Builder'" \
+    --query 'Images[*].[ImageId]' \
+    --output json | jq -r '.[][]'
+ami-01b0623ebfe43be21
+ami-02e51fc4092022bf4
+ami-04b58f24e894180a4
+ami-096b13b8c8ff5db12
+```
+</details>
