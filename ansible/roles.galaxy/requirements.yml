@@ -3,3 +3,5 @@
 roles:
   - name: gantsign.antigen
     version: 1.4.0
+  - name: petermosmans.virtualbox-guest
+    version: 1.8.6

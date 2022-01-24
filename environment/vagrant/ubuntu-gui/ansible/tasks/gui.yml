@@ -1,0 +1,7 @@
+---
+- name: install ubuntu-desktop
+  apt:
+    name:
+      - ubuntu-desktop
+    state: latest
+    update_cache: true
