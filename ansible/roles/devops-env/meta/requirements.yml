@@ -1,1 +1,7 @@
 ---
+- name: andrewrothstein.starship
+  version: v1.0.23
+- name: gantsign.antigen
+  version: 1.4.0
+- name: nephelaiio.vim
+  version: 4.0.1

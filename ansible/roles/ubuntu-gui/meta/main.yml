@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Andrew Horbach
-  description: Install useful software on linux vm
+  description: Install GUI on ubuntu and several useful programs
   license: 
     - Unlicense
   min_ansible_version: 2.9
@@ -11,8 +11,6 @@ galaxy_info:
         # - bionic  # TODO: check it
         - focal
   galaxy_tags:
-    - devops
     - environment
-dependencies:
-  - andrewrothstein.starship
-  - gantsign.antigen
+    - gui
+dependencies: []

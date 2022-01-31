@@ -1,8 +1,27 @@
 ---
 
+# TODO: custom ~/.zshrc && ~/.config/starship.toml
+
+- include_role:
+    name: gantsign.antigen
+  tags:
+    - shell
+
+- include_role:
+    name: andrewrothstein.starship
+  tags:
+    - shell
+
+# - include_role:  # NOTE: installing all stuff to ~/ for root, won't deal  with it right now
+#     name: nephelaiio.vim
+#   tags:
+#     - shell
+#     - ide
+
 - import_tasks: main_payload.yml
   tags:
     - devops
+    - shell
 
 - import_tasks: docker.yml
   tags:

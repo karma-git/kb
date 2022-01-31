@@ -1,4 +1,12 @@
 ---
+# shell
+
+- name: "(shell): add starship init to ~/{{ user }}/.zshrc"
+  lineinfile:
+    path: '/home/{{ user }}/.zshrc'
+    line: 'eval "$(starship init zsh)"'
+    create: true
+
 # devops
 
 - name: "(devops): add hashicorp apt-key"
@@ -17,6 +25,7 @@
   apt: 
     name:
       - ansible
+      - awscli
       - asciinema
       - jsonnet
       - jq

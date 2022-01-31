@@ -8,3 +8,4 @@
 
   roles:
     - role: devops-env
+    - role: ubuntu-gui

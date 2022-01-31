@@ -1,12 +1,7 @@
-andrewhorbach.devops-env  # TBD
+andrewhorbach.ubuntu-gui  # TBD
 =========
 
-A role that installs a lot of useful tools for a DevOps Engineer daily routine, such as:
-
-- zsh + ohmyzsh + starship
-- docker engine, docker-compose
-- ansible, awscli, jq, kubectl, helm, terraform
-- some programming languages (go, nodejs, python)
+A role that installs a ubuntu gui and some useful desktop apps: vscode, telegram, notion and etc.
 
 Requirements
 ------------
@@ -29,7 +24,7 @@ Example Playbook
 ```yml
 - hosts: all
   roles:
-    - andrewhorbach.devops-env  # TBD
+    - andrewhorbach.ubuntu-gui  # TBD
 ```
 
 License
