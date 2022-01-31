@@ -1,0 +1,9 @@
+---
+
+- import_tasks: main_payload.yml
+  tags:
+    - devops
+
+- import_tasks: docker.yml
+  tags:
+    - docker

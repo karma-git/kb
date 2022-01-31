@@ -1,0 +1,4 @@
+---
+# defaults file for devops-env
+linux_user: vagrant
+ubuntu_codename:  '{{ ansible_facts["lsb"]["codename"] }}'
