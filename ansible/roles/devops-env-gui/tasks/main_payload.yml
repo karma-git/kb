@@ -1,0 +1,25 @@
+---
+- name: "(gui): install ubuntu-desktop"
+  apt:
+    name:
+      - ubuntu-desktop
+    state: latest
+    update_cache: true
+
+- name: "(gui): Install desktop programs"
+  # https://snapcraft.io
+  community.general.snap:
+    name:
+      # development
+      - code
+      - kontena-lens
+      - postman
+      # social
+      - telegram-desktop
+      - discord
+      # productivity
+      - bitwarden
+      - chromium
+      - notion-snap
+    channel: latest/stable
+    classic: true

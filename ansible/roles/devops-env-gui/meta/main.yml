@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Andrew Horbach
+  description: Install GUI on ubuntu and several useful programs
+  license:
+    - Unlicense
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        # - bionic  # TODO: check it
+        - focal
+  galaxy_tags:
+    - environment
+    - gui
+dependencies: []

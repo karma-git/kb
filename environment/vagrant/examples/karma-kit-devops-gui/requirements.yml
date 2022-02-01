@@ -1,0 +1,5 @@
+---
+
+roles:
+  - name: petermosmans.virtualbox-guest
+    version: 1.8.6

@@ -1,0 +1,11 @@
+---
+
+- name: vagrant test
+  hosts: all
+
+  become: true
+  become_method: sudo
+
+  roles:
+    - role: devops-env
+    - role: ubuntu-gui

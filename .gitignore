@@ -1,7 +1,12 @@
 .DS_Store
-Ansible/*
+ansible/roles.galaxy
 terraform/*
 **/.vagrant
 environment/**/roles
 __pycache__
 dist
+
+# DANGER
+*.secret.hcl
+*.secret.yml
+vagrant-output

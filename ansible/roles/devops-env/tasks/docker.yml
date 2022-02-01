@@ -1,0 +1,37 @@
+---
+- name: "(docker): Update the apt packages"
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+    state: latest
+    update_cache: true
+
+- name: "(docker): Add Docker’s official GPG key"
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: "(docker): Add Docker Repository"
+  apt_repository:
+    repo: 'deb https://download.docker.com/linux/ubuntu {{ ubuntu_codename }} stable'
+    state: present
+
+- name: "(docker): Install docker engine"
+  apt:
+    name:
+      - docker-ce
+      - docker-compose
+    state: latest
+    update_cache: true
+
+- name: "(docker): Make sure that group <docker> exists"
+  group:
+    name: docker
+    state: present
+
+- name: "(docker): Add aws user to docker docker group"
+  user:
+    name: '{{ linux_user }}'
+    groups: docker
+    append: true

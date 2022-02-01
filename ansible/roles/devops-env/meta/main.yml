@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: Andrew Horbach
+  description: Install useful software on linux vm
+  license:
+    - Unlicense
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        # - bionic  # TODO: check it
+        - focal
+  galaxy_tags:
+    - devops
+    - environment
+dependencies:
+  - andrewrothstein.starship
+  - gantsign.antigen

@@ -1,0 +1,25 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+    config.vm.box = "karma-kit/focal64-devops-gui"
+    config.vm.box_version = "1.0"
+    config.vm.hostname = "ubuntu-devops-gui"
+    config.vm.synced_folder "./", "/srv/"
+
+    # provision (install guest additionals)
+    # config.vm.provision "ansible" do |ansible|
+    #     ansible.playbook = "./playbook.yml"
+    #     ansible.galaxy_role_file = "./requirements.yml"
+    # end
+
+    # configure cpu,memory,videomemory,and enable vbox gui
+    config.vm.provider "virtualbox" do |v|
+        v.memory = 4096
+        v.cpus = 4
+        v.gui = true
+        v.customize ["modifyvm", :id, "--vram", "128"]
+        v.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
+        v.customize ['modifyvm', :id, '--draganddrop', 'bidirectional']
+    end
+  end

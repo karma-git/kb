@@ -1,0 +1,97 @@
+---
+# shell
+
+- name: "(shell): add starship init to ~/{{ linux_user }}/.zshrc"
+  lineinfile:
+    path: '/home/{{ linux_user }}/.zshrc'
+    line: 'eval "$(starship init zsh)"'
+    create: true
+
+# devops
+
+- name: "(devops): add hashicorp apt-key"
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    state: present
+
+- name: "(devops): add hashicorp apt repository"
+  apt_repository:
+    repo: 'deb [arch=amd64] https://apt.releases.hashicorp.com {{ ubuntu_codename }} main'
+    state: present
+    filename: hashicorp
+    update_cache: true
+
+- name: "(devops): install basics devops packages via apt"
+  apt:
+    name:
+      - ansible
+      - awscli
+      - asciinema
+      - jsonnet
+      - jq
+      - packer
+      - python3-pip
+      - terraform
+    state: present
+    update_cache: true
+
+- name: "(devops): install pip packages"
+  pip:
+    name:
+      - httpie
+
+- name: "(devops): install kubectl"
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/v1.23.0/bin/linux/amd64/kubectl
+    dest: /usr/local/bin/kubectl
+    mode: '0755'
+
+- name: "(devops): install minikube"
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    dest: /usr/local/bin/minikube
+    mode: '0755'
+
+- name: "(devops): download helm installer"
+  get_url:
+    url: https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    dest: /tmp/get_helm.sh
+    mode: '0755'
+
+- name: "(devops): execute get_helm.sh"
+  shell: /tmp/get_helm.sh
+
+- name: "(devops): remove the get_helm.sh"
+  file:
+    path: /tmp/get_helm.sh
+    state: absent
+
+- name: "(devops): install yq"
+  get_url:
+    url: https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+    dest: /usr/local/bin/yq
+    mode: '0755'
+
+# programming
+
+- name: "(programming): install programming stuff"
+  apt:
+    name:
+      - golang
+      - nodejs
+      - npm
+      - python3-pip
+      - python3.8-venv
+    state: latest
+    update_cache: true
+
+- name: "(programming): install dev pip packages"
+  pip:
+    name:
+      - poetry
+
+- name: "(programming): install dev js packages"
+  npm:
+    name: yarn
+    # version: '1.6.2'
+    global: true

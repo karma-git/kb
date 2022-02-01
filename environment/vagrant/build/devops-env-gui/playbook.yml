@@ -1,0 +1,11 @@
+---
+
+- name: install devops-env
+  hosts: all
+
+  become: true
+  become_method: sudo
+
+  roles:
+    - role: devops-env
+    - role: devops-env-gui

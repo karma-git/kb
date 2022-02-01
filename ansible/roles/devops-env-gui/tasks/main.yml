@@ -1,0 +1,5 @@
+---
+
+- import_tasks: main_payload.yml
+  tags:
+    - gui

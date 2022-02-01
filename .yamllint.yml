@@ -5,7 +5,7 @@ extends: default
 #   https://yamllint.readthedocs.io/en/stable/disable_with_comments.html
 
 ignore: |
-  ansible/
+  ansible/roles.galaxy
 
 rules:
   line-length:
