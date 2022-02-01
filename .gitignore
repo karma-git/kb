@@ -5,3 +5,8 @@ terraform/*
 environment/**/roles
 __pycache__
 dist
+
+# DANGER
+*.secret.hcl
+*.secret.yml
+vagrant-output
