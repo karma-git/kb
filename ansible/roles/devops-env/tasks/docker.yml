@@ -1,7 +1,7 @@
 ---
-- name: "(docker): Update the apt package index and install packages to allow apt to use a repository over HTTPS"
+- name: "(docker): Update the apt packages"
   apt:
-    name: 
+    name:
       - apt-transport-https
       - ca-certificates
     state: latest
@@ -19,7 +19,7 @@
 
 - name: "(docker): Install docker engine"
   apt:
-    name: 
+    name:
       - docker-ce
       - docker-compose
     state: latest

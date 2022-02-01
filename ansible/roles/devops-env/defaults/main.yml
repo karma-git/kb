@@ -1,7 +1,7 @@
 ---
 # defaults file for devops-env
 linux_user: vagrant
-ubuntu_codename:  '{{ ansible_facts["lsb"]["codename"] }}'
+ubuntu_codename: '{{ ansible_facts["lsb"]["codename"] }}'
 install_gui: false
 
 # https://github.com/gantsign/ansible_role_antigen
@@ -15,7 +15,7 @@ users:
     antigen_theme:
       # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#aussiegeek
       name: aussiegeek
-    antigen_bundles:            
+    antigen_bundles:
       - name: git
       - name: zsh-autosuggestions
         url: zsh-users/zsh-autosuggestions

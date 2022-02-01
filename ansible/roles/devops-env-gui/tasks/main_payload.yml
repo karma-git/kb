@@ -5,7 +5,7 @@
       - ubuntu-desktop
     state: latest
     update_cache: true
-  
+
 - name: "(gui): Install desktop programs"
   # https://snapcraft.io
   community.general.snap:

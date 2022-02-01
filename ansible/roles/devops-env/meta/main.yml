@@ -2,7 +2,7 @@
 galaxy_info:
   author: Andrew Horbach
   description: Install useful software on linux vm
-  license: 
+  license:
     - Unlicense
   min_ansible_version: 2.9
   platforms:

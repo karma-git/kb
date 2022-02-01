@@ -11,7 +11,7 @@ users:
     antigen_theme:
       # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#aussiegeek
       name: aussiegeek
-    antigen_bundles:            
+    antigen_bundles:
       - name: git
       - name: zsh-autosuggestions
         url: zsh-users/zsh-autosuggestions
