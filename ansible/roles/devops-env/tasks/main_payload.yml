@@ -1,9 +1,9 @@
 ---
 # shell
 
-- name: "(shell): add starship init to ~/{{ user }}/.zshrc"
+- name: "(shell): add starship init to ~/{{ linux_user }}/.zshrc"
   lineinfile:
-    path: '/home/{{ user }}/.zshrc'
+    path: '/home/{{ linux_user }}/.zshrc'
     line: 'eval "$(starship init zsh)"'
     create: true
 

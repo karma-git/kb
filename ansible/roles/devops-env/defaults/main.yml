@@ -23,6 +23,3 @@ users:
         url: zsh-users/zsh-syntax-highlighting
       - name: docker
       - name: docker-compose
-
-# vim role
-ansible_user_id: vagrant

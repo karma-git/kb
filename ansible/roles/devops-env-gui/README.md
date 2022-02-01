@@ -1,4 +1,4 @@
-andrewhorbach.ubuntu-gui  # TBD
+andrewhorbach.devops-env-gui  # TBD
 =========
 
 A role that installs a ubuntu gui and some useful desktop apps: vscode, telegram, notion and etc.
@@ -24,7 +24,7 @@ Example Playbook
 ```yml
 - hosts: all
   roles:
-    - andrewhorbach.ubuntu-gui  # TBD
+    - andrewhorbach.devops-env-gui  # TBD
 ```
 
 License
