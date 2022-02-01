@@ -1,0 +1,10 @@
+---
+
+- name: vagrant provisioning
+  hosts: all
+
+  become: true
+  become_method: sudo
+
+  roles:
+    - role: PeterMosmans.virtualbox-guest
