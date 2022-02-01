@@ -4,11 +4,11 @@
 
 [![asciicast](https://asciinema.org/a/58jLHlUsCZA63uGjIClQcX5r0.svg)](https://asciinema.org/a/58jLHlUsCZA63uGjIClQcX5r0)
 
-<script id="asciicast-58jLHlUsCZA63uGjIClQcX5r0" src="https://asciinema.org/a/58jLHlUsCZA63uGjIClQcX5r0.js" async></script>
-
-- [Builded via Packer]()
+- [Packer](https://github.com/karma-git/playground/tree/master/environment/vagrant/build)
+- [Ansible](https://github.com/karma-git/playground/tree/master/ansible)
 - [Vagrant Cloud](https://app.vagrantup.com/karma-kit)
-- [Ansible roles]()
+- [Vagrantfile examples](https://github.com/karma-git/playground/tree/master/environment/vagrant/examples)
+
 
 ## Guest Additions
 
