@@ -5,8 +5,8 @@ CKA topic: Cluster Architecture, Installation & Configuration
 ## single node k8s cluster
 
 - CRI (containerd) [installation manual](https://github.com/containerd/containerd/blob/main/docs/cri/installation.md)
-- [devopscube](https://raw.githubusercontent.com/scriptcamp/vagrant-kubeadm-kubernetes/main/scripts/common.sh)
-- [just me and opensource](https://raw.githubusercontent.com/justmeandopensource/kubernetes/master/vagrant-provisioning/bootstrap.sh)
+- `devopscube`: [article](https://devopscube.com/kubernetes-cluster-vagrant/), [github-repo](https://github.com/scriptcamp/vagrant-kubeadm-kubernetes)
+- [just me and opensource](https://raw.githubusercontent.com/justmeandopensource/kubernetes/master/vagrant-provisioning/)
 
 ## master init
 
