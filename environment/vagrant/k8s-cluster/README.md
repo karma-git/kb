@@ -40,3 +40,8 @@ EOF
    24  kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=192.168.1.202 --ignore-preflight-errors=NumCPU,Mem,FileContent--proc-sys-net-bridge-bridge-nf-call-iptables,FileContent--proc-sys-net-ipv4-ip_forward
    25  crictl --runtime-endpoint /run/containerd/containerd.sock ps -a | grep kube | grep -v pause
    26  history
+---
+
+## master init
+
+sudo kubeadm init --apiserver-advertise-address=192.168.1.81 --pod-network-cidr=192.168.0.0/16 >> /root/kubeinit.log 2>/dev/null

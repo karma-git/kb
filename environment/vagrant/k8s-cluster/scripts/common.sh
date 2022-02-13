@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Variable Declaration
-K8S_VERSION="1.22.0-00"
+K8S_VERSION="1.22.6-00"
 # K8S_VERSION="1.23.3-00"
 
 echo "[TASK 1] Disable and turn off SWAP"
@@ -34,6 +34,14 @@ mkdir /etc/containerd
 containerd config default > /etc/containerd/config.toml
 systemctl restart containerd
 systemctl enable containerd >/dev/null 2>&1
+# configure crictl
+cat >>/etc/crictl.yaml<<EOF
+runtime-endpoint: unix:///run/containerd/containerd.sock
+image-endpoint: unix:///run/containerd/containerd.sock
+timeout: 2
+debug: false
+pull-image-on-create: false
+EOF
 
 echo "[TASK 6] Add apt repo for kubernetes"
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - >/dev/null 2>&1
