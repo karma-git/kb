@@ -45,3 +45,12 @@ EOF
 ## master init
 
 sudo kubeadm init --apiserver-advertise-address=192.168.1.81 --pod-network-cidr=192.168.0.0/16 >> /root/kubeinit.log 2>/dev/null
+
+## node join
+
+on master
+```shell
+```
+```shell
+kubectl label node node-2 node-role.kubernetes.io/worker=""
+```
