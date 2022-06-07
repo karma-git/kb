@@ -6,7 +6,7 @@ install_gui: false
 
 # https://github.com/gantsign/ansible_role_antigen
 users:
-  - username: vagrant
+  - username: '{{ linux_user }}'
     antigen_libraries:
       - name: oh-my-zsh
         env:
