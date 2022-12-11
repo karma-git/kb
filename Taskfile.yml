@@ -1,0 +1,22 @@
+---
+# ref: https://taskfile.dev/
+
+version: "3"
+
+vars:
+  TF_PATH: terraform/__modules
+
+tasks:
+  tf-docs-template:
+    description: generate terraform module documentation, see https://terraform-docs.io/
+    cmds:
+      - terraform-docs markdown table {{.TF_PATH}}/{{.TF_MODULE}} > {{.TF_PATH}}/{{.TF_MODULE}}/README.md
+
+  tf-aws-route53-records:
+    cmds:
+      - task: tf-docs-template
+        vars: {TF_MODULE: "aws-route53-records"}
+
+  tf-docs-all:
+    cmds:
+      - task: tf-aws-route53-records
