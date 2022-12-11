@@ -1,6 +1,6 @@
 .DS_Store
 ansible/roles.galaxy
-terraform/*
+
 **/.vagrant
 environment/**/roles
 __pycache__
@@ -10,3 +10,8 @@ dist
 *.secret.hcl
 *.secret.yml
 vagrant-output
+# due to nothing is ready
+libs/*
+
+# content experiments :(
+terraform/*

@@ -12,6 +12,11 @@ tasks:
     cmds:
       - terraform-docs markdown table {{.TF_PATH}}/{{.TF_MODULE}} > {{.TF_PATH}}/{{.TF_MODULE}}/README.md
 
+  tf-aws-efs-restore:
+    cmds:
+      - task: tf-docs-template
+        vars: {TF_MODULE: "aws-efs-restore"}
+
   tf-aws-route53-records:
     cmds:
       - task: tf-docs-template
@@ -20,3 +25,4 @@ tasks:
   tf-docs-all:
     cmds:
       - task: tf-aws-route53-records
+      - task: tf-aws-efs-restore
