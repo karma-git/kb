@@ -1,5 +1,7 @@
 ---
 title: cv
+hide:
+  - feedback
 # tags:
 #   - HTML5
 #   - JavaScript

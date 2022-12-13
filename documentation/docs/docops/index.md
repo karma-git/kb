@@ -1,4 +1,5 @@
 ---
+title: sample-mkdocs
 comments: true
 ---
 

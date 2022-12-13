@@ -1,5 +1,7 @@
 ---
 title: Tags
+hide:
+  - feedback
 ---
 
 # Tags
