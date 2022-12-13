@@ -4,7 +4,6 @@
 site_name: karma's second brain
 site_description: Andrew Horbach website, build via mkdocs
 site_author: Andrew Horbach
-site_url: https://karma-git.github.io/mkdocs/
 
 # Copyright
 copyright: "&copy; 2022 Andrew Horbach"
@@ -12,7 +11,7 @@ copyright: "&copy; 2022 Andrew Horbach"
 # Repository
 repo_name: "GitHub"
 repo_url: "https://github.com/karma-git/infra"
-edit_uri: "https://github.com/karma-git/infra/master/docs"
+edit_uri: "https://github.com/karma-git/infra/master/documentation"
 
 # Configuration
 docs_dir: "docs"
