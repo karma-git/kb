@@ -1,5 +1,4 @@
 ---
-title: Демо страничка возможностей markdown
 comments: true
 ---
 
