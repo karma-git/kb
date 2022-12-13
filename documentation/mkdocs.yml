@@ -1,0 +1,155 @@
+---
+# TODO: move pictures to object storage
+# TODO: create conventions for articles sections, eg: tech-radar,services-registry,tech-talks and etc.
+
+# Project information
+site_name: karma's second brain
+site_description: Andrew Horbach website, build via mkdocs
+site_author: Andrew Horbach
+site_url: https://example.com/mkdocs
+
+# Copyright
+copyright: "&copy; 2022 Andrew Horbach"
+
+# Repository
+repo_name: "GitHub"
+repo_url: "https://github.com/karma-git/infra"
+edit_uri: "https://github.com/karma-git/infra/master/docs"
+
+# Configuration
+docs_dir: "docs"
+# docs_dir: "docs/docs_sample" # FIXME
+theme:
+  name: "material"
+  icon:
+    repo: fontawesome/brands/gitkraken
+  language: "en"
+  features:
+    # ref: https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-header/
+    - header.autohide
+    - announce.dismiss
+    # ref: https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - toc.follow
+    - navigation.top
+  custom_dir: overrides
+  palette:
+    - scheme: default
+      primary: teal
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      primary: teal
+      accent: indigo
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+  # favicon: assets/logo.png
+  # logo: assets/logo.png
+
+  name: material
+  locale: en
+  highlightjs: true
+  hljs_languages:
+    - yaml
+  features:
+    - content.code.annotate
+    # - content.tabs.link
+    - content.tooltips
+    # - header.autohide
+    - navigation.expand
+    - navigation.indexes
+    # - navigation.instant
+    # - navigation.prune
+    - navigation.sections
+    - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+
+# Extensions
+markdown_extensions:
+  # Abbreviations
+  - abbr
+  # Admonitions
+  - admonition
+  - pymdownx.details
+  # Annotations, Images
+  - attr_list
+  - md_in_html
+  # Code blocks
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  # Content tabs
+  - pymdownx.tabbed:
+      alternate_style: true
+  # Data tables
+  - tables
+  # Footnotes
+  - footnotes
+  # Formatting
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  # Icons + Emojis
+  - pymdownx.emoji
+  # Lists
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  # Auto Add Glossary
+  - pymdownx.snippets
+  # TODO: it does not work with current version of mkdocs
+  # - pymdownx.snippets:
+  #     auto_append:
+  #       - includes/abbreviations.md
+  # Admonitions, Annotations, Code blocks, Content tabs, Diagrams(Meramid)
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+
+plugins:
+  - awesome-pages  # Page tree
+  # - blog # insiders
+  - mermaid2:
+      version: 8.8.2
+  - search:
+      lang:
+        - en
+        - ru
+  - tags:
+      enabled: !ENV [CI, false]
+      tags_file: home/tags.md
+      tags_allowed: # TODO: automate it
+        - HTML5
+        - JavaScript
+
+# Customization
+extra_css:
+  - extras/extra.css
+
+extra_javascript:
+  - https://unpkg.com/mermaid@8.8.2/dist/mermaid.min.js
+
+# Page tree - implemented via plugin awesome-pages

@@ -1,16 +1,16 @@
----
+# ---
 
-name: CI
+# name: CI
 
-on: [push]
+# on: [push]
 
-jobs:
-  # https://github.com/ibiqlik/action-yamllint
-  lintAllTheThings:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: yaml-lint
-        uses: ibiqlik/action-yamllint@v3
-        with:
-          config_file: .yamllint.yml
+# jobs:
+#   # https://github.com/ibiqlik/action-yamllint
+#   lintAllTheThings:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v1
+#       - name: yaml-lint
+#         uses: ibiqlik/action-yamllint@v3
+#         with:
+#           config_file: .yamllint.yml

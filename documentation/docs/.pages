@@ -1,0 +1,8 @@
+---
+
+nav:
+    - Home: home
+    - DevOps: devops
+    - DocOps: docops
+    - SRE: sre
+    - Blog: blog
