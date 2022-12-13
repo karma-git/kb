@@ -115,11 +115,9 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   # Auto Add Glossary
-  - pymdownx.snippets
-  # TODO: it does not work with current version of mkdocs
-  # - pymdownx.snippets:
-  #     auto_append:
-  #       - includes/abbreviations.md
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
   # Admonitions, Annotations, Code blocks, Content tabs, Diagrams(Meramid)
   - pymdownx.superfences:
       custom_fences:
