@@ -1,12 +1,10 @@
 ---
-# TODO: move pictures to object storage
-# TODO: create conventions for articles sections, eg: tech-radar,services-registry,tech-talks and etc.
 
 # Project information
 site_name: karma's second brain
 site_description: Andrew Horbach website, build via mkdocs
 site_author: Andrew Horbach
-site_url: https://example.com/mkdocs
+site_url: https://karma-git.github.io/mkdocs/
 
 # Copyright
 copyright: "&copy; 2022 Andrew Horbach"
