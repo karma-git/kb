@@ -1,0 +1,20 @@
+---
+
+name: Get node pods
+command: |
+  kubectl --context {{ctx}} get pods -A --field-selector spec.nodeName={{node}}
+tags:
+  - kubernetes
+  - karma
+description: Get all pods which run on node
+arguments:
+  - name: ctx
+    description: kubernetes context
+    default_value: ~
+  - name: node
+    description: kubernetes node name
+    default_value: ~
+source_url: https://github.com/karma-git/infra/dotfiles
+author: karma
+author_url: https://github.com/karma-git
+shells: []

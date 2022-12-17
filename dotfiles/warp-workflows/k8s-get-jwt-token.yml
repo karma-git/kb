@@ -1,0 +1,20 @@
+---
+
+name: Get kubernetes.io/service-account-token
+command: |
+  kubectl get secrets {{secret}} -o jsonpath='{.data.token}' \
+    | base64 --decode \
+    | jwt decode -
+tags:
+  - kubernetes
+  - jwt
+  - karma
+description: Get information about serviceAccount token
+arguments:
+  - name: secret
+    description: kubernetes secret name
+    default_value: ~
+source_url: https://github.com/karma-git/infra/dotfiles
+author: karma
+author_url: https://github.com/karma-git
+shells: []

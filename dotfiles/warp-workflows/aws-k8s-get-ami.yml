@@ -1,0 +1,26 @@
+---
+
+name: Get AWS AL2 AMI id for given k8ss version
+command: |
+  aws ec2 describe-images --filters "Name=name,Values=amazon-eks-node-{{k8sVersion}}-*" \
+      | jq -r '.Images[] | [.Name, .ImageId] | @tsv' | sort --reverse
+tags:
+  - aws
+  - kubernetes
+  - k8s
+  - karma
+description: Get AWS AL2 AMI id for given k8s version
+# TODO: add more clear description, to all workflows
+# description: |
+#   Get AWS AL2 AMI id for given k8s version
+
+#   Example:
+#   ...
+arguments:
+  - name: k8sVersion
+    description: k8s version
+    default_value: "1.24"
+source_url: https://github.com/karma-git/infra/dotfiles
+author: karma
+author_url: https://github.com/karma-git
+shells: []

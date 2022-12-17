@@ -1,0 +1,39 @@
+---
+
+version: "3"
+
+tasks:
+  sync:
+    desc: update zshrc,starship,warp
+    cmds:
+      - cp -r .zshrc ~/.zshrc
+      - cp -r starship.toml ~/.config/starship.toml
+      - cp -r warp-workflows ~/.warp/workflows
+
+  docs:
+    vars:
+      wfpath: warp-workflows
+      docsFile: tmp-task-docs.yml
+    # TODO: make it via go-template
+    cmds:
+      - |-
+        touch {{.docsFile}}
+
+        # NOTE: proceed with the warp workflows
+        # search workflows manifests
+        workflows=$(fd . warp-workflows)
+        # add collection for workflows
+        yq e -i '.wf = []' {{.docsFile}}
+
+        for wf in ${workflows}; do
+          name=$(yq e '.spec.name' $wf) \
+          desc=$(yq e '.spec.description' $wf) \
+          yq e -i '.wf += {
+          "name": env(name),
+          "desc": env(desc)
+          }' {{.docsFile}}
+        done
+
+        j2 -f {{.docsFile}} dotfiles.j2 -o dotfiles.md
+        rm -rf {{.docsFile}}
+        cp dotfiles.md ../documentation/docs/blog

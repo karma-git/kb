@@ -1,0 +1,25 @@
+---
+
+name: Get AWS EBS id from PVC
+command: |
+  pv_name=$(kubectl get --context {{ctx}} -n {{ns}} pvc {{pvc}} -o jsonpath='{.spec.volumeName}');
+  kubectl --context {{ctx}} get pv ${pv_name} -o jsonpath='{.spec.csi.volumeHandle}'
+tags:
+  - kubernetes
+  - aws
+  - karma
+description: Get AWS EBS id from PVC
+arguments:
+  - name: ctx
+    description: kubernetes context
+    default_value: ~
+  - name: ns
+    description: kubernetes namespace
+    default_value: ~
+  - name: pvc
+    description: source pvc
+    default_value: ~
+source_url: https://github.com/karma-git/infra/dotfiles
+author: karma
+author_url: https://github.com/karma-git
+shells: []

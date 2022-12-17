@@ -1,0 +1,23 @@
+---
+
+name: Get Storage
+command: |
+  kubectl --context {{ctx}} get pvc -n {{ns}} -o json \
+  | jq -r '(["storageClassName","name","namespace","volumeName"]
+    | (., map(length*"-"))), (.items[] | [.spec.storageClassName, .metadata.name, .metadata.namespace, .spec.volumeName])
+    | @tsv'
+tags:
+  - kubernetes
+  - karma
+description: Get information about PersistenceVolumeClaim, such as StorageClass,Name,PVname
+arguments:
+  - name: ctx
+    description: kubernetes context
+    default_value: ~
+  - name: ns
+    description: kubernetes namespace
+    default_value: ~
+source_url: https://github.com/karma-git/infra/dotfiles
+author: karma
+author_url: https://github.com/karma-git
+shells: []

@@ -1,0 +1,37 @@
+---
+
+name: Generate Certificate
+command: |
+  cfssl gencert \
+      -ca {{path_to_cert_dir}}/{{cert_name}} \
+      -ca-key {{path_to_cert_dir}}/{{cert_key_name}} \
+      -config {{path_to_cert_dir}}/{{cert_config}} \
+      -profile={{cfssl_profile}} {{csr}}.json \
+    | cfssljson -bare {{csr}}
+tags:
+  - karma
+  - tls
+description: Generate Certificate
+arguments:
+  - name: csr
+    description: see default via `$ cfssl print-defaults csr > csr.json`
+    default_value: csr
+  - name: path_to_cert_dir
+    description: path to certificate
+    default_value: ~/.cfssl/ca
+  - name: cert_name
+    description: cert name
+    default_value: ca.pem
+  - name: cert_key_name
+    description: cert key name
+    default_value: ca-key.pem
+  - name: cert_config
+    description: see default via `$ cfssl print-defaults config > ca-config.json`
+    default_value: ca-config.json
+  - name: cfssl_profile
+    description: see default via `$ cfssl print-defaults config > ca-config.json`
+    default_value: server
+source_url: https://github.com/karma-git/infra/dotfiles
+author: karma
+author_url: https://github.com/karma-git
+shells: []

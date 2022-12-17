@@ -1,0 +1,22 @@
+---
+
+name: Kubeseal
+command: |
+  kubeseal --context {{ctx}} --controller-name sealed-secrets -o yaml \
+  < {{file}}.secret.yml \
+  > {{file}}.sealedsecret.yml
+tags:
+  - kubernetes
+  - karma
+description: Seal plain kubernetes secret into SealedSecret
+arguments:
+  - name: ctx
+    description: kubernetes context
+    default_value: ~
+  - name: file
+    description: secret file name
+    default_value: config
+source_url: https://github.com/karma-git/infra/dotfiles
+author: karma
+author_url: https://github.com/karma-git
+shells: []
