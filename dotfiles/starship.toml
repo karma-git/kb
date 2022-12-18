@@ -39,6 +39,7 @@ $character"""
 
 [aws]
 format = 'on [$symbol($profile )(\($region\) )]($style)'
+symbol = '⛅'
 style = "bold blue"
 [aws.region_aliases]
 eu-central-1 = "fr-euc1"
@@ -83,11 +84,24 @@ staged = '[++\($count\)](green)'
 renamed = "👅"
 deleted = "🗑"
 
+[hostname]
+ssh_only = true
+ssh_symbol = '🌏 '
+trim_at = ''
+format = '[$ssh_symbol](bold blue) on [$hostname](bold red)'
+style	= 'bold dimmed green'
+disabled = false
+
 [kubernetes]
 disabled = false
-format = '|[⛵ $context \($namespace\)](dimmed green) '
-[kubernetes.context_aliases]
-"dev.local.cluster.k8s" = "dev"
+format = '|[🚢 $context \($namespace\)](dimmed green) '
+# [kubernetes.context_aliases]
+# "dev.local.cluster.k8s" = "dev"
+
+[localip]
+ssh_only = true
+format = '@[$localipv4](bold red) '
+disabled = false
 
 [memory_usage]
 disabled = false
@@ -102,15 +116,20 @@ disabled = false
 [nodejs]
 format = "via [🧶 $version](bold green) "
 
-# [status]
-# disabled = true
-# format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
-# map_symbol = true
-# style = "bg:blue"
-# symbol = "🔴"
+[status]
+style = 'bg:blue'
+symbol = '🔴 '
+success_symbol = '🟢 SUCCESS'
+format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+map_symbol = true
+disabled = true
 
-# [time]
-# disabled = true
-# format = '🕙 [ $time ]($style) '
-# time_format = "%T"
-# utc_time_offset = "+3"
+[time]
+disabled = false
+format = '🕒[\[$time\]]($style) '
+use_12hr = true
+time_format = '%R'
+# utc_time_offset = 'local'
+utc_time_offset = '+2'
+# time_range = '10:00:00-14:00:00'
+time_range = '-'
