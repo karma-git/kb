@@ -1,0 +1,41 @@
+---
+
+name: Run debug pod
+command: |
+  # create pod
+  kubectl --context {{ctx}} run {{podName}} -n {{ns}} --image={{image}}  --command -- {{cmd}};
+
+  # wait until pod will be in the running state
+  while [[ $(kubectl --context {{ctx}} get pod {{podName}} -n {{ns}} \
+    -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]];
+    do echo "waiting for {{podName}} pod to become in Ready conditions";
+    sleep 3;
+  done;
+
+  # exec into container
+  kubectl --context {{ctx}} exec -it pod/{{podName}} -n {{ns}} -- zsh
+tags:
+  - kubernetes
+  - docker
+  - karma
+description: Run debug pod with karma's image
+arguments:
+  - name: ctx
+    description: kubernetes context
+    default_value: ~
+  - name: ns
+    description: namespace where to launch pod
+    default_value: default
+  - name: podName
+    description: podName
+    default_value: ahorbach-debug
+  - name: image
+    description: docker image for pod
+    default_value: docker.io/karmawow/monorepo-devops-tools:2.0
+  - name: cmd
+    description: command to run
+    default_value: sleep 3600 # 1 hour
+source_url: https://github.com/karma-git/infra/dotfiles
+author: karma
+author_url: https://github.com/karma-git
+shells: []

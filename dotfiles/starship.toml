@@ -85,12 +85,12 @@ renamed = "👅"
 deleted = "🗑"
 
 [hostname]
+disabled = false
 ssh_only = true
 ssh_symbol = '🌏 '
 trim_at = ''
 format = '[$ssh_symbol](bold blue) on [$hostname](bold red)'
 style	= 'bold dimmed green'
-disabled = false
 
 [kubernetes]
 disabled = false
