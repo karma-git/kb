@@ -11,8 +11,8 @@ copyright: "&copy; 2022 Andrew Horbach"
 
 # Repository
 repo_name: "GitHub"
-repo_url: "https://github.com/karma-git/infra"
-edit_uri: https://github.com/karma-git/infra/blob/master/documentation/docs/
+repo_url: "https://github.com/karma-git/kb"
+edit_uri: https://github.com/karma-git/kb/blob/master/documentation/docs/
 
 # Configuration
 docs_dir: "docs"

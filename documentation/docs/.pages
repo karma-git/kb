@@ -2,6 +2,7 @@
 
 nav:
     - Home: home
+    - CNCF Landscape: cncf
     - DevOps: devops
     - DocOps: docops
     - SRE: sre
