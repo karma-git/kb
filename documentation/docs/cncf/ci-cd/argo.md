@@ -1,5 +1,11 @@
 ---
 title: Argo CD
+comments: true
+tags:
+  - CNCF
+  - Argo
+  - CD
+  - k8s
 ---
 
 Argo CD - это **GitOps контроллер**, который **применяет** конфигурации (plain-yaml манифесты, helm чарты) из **git репозитория** в kubernetes кластере и поддерживает это **желаемое состояние**.
