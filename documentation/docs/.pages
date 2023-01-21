@@ -5,5 +5,6 @@ nav:
     - CNCF Landscape: cncf
     - DevOps: devops
     - DocOps: docops
-    - SRE: sre
+    # TODO: add section
+    # - SRE: sre
     - Blog: blog

@@ -1,11 +1,7 @@
 ---
-title: cv
+title: me
 hide:
   - feedback
-# tags:
-#   - HTML5
-#   - JavaScript
-#   - CSS
 ---
 
 ### hey there <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px">
