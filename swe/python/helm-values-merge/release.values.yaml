@@ -1,0 +1,12 @@
+---
+
+pi: "test other types overwrite"
+
+# test list overwrite
+calling-birds:
+  - cockatoo
+# tet dict merge
+xmas-fifth-day:
+  foo: bar
+  partridges:
+    count: 6000
