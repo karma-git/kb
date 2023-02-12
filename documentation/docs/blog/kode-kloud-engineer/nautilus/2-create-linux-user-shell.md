@@ -1,5 +1,5 @@
 ---
-title: "2 - Create a Linux User with non-interactive shell"
+title: "2 - Linux User no shell"
 tags:
   - kodekloud-engineer-sysadmin
 comments: true
