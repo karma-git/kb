@@ -5,6 +5,8 @@ tags:
 comments: true
 ---
 
+## Solution
+
 ```shell
 thor@jump_host ~$ ssh tony@stapp01
 [tony@stapp01 ~]$ sudo -i
