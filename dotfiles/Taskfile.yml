@@ -9,6 +9,7 @@ tasks:
       - cp -r .zshrc ~/.zshrc
       - cp -r starship.toml ~/.config/starship.toml
       - cp -r warp-workflows ~/.warp/workflows
+      - cp -r k8slens-templates ~/.k8slens/templates/ahorbach
 
   docs:
     vars:
