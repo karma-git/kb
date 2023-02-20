@@ -180,7 +180,7 @@ That's :musical_note: in the background is me in my :rocket:
     `NOTE: Imgur reject CORS request`
 
 <figure markdown>
-  ![Image title](../images/slurm_devops.jpeg){ width="300" }
+  ![Image title](https://d1.awsstatic.com/product-marketing/DevOps/DevOps_feedback-diagram.ff668bfc299abada00b2dcbdc9ce2389bd3dce3f.png){ width="300" }
   <figcaption>Slurm DevOps</figcaption>
 </figure>
 
