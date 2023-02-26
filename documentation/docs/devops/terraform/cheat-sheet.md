@@ -1,6 +1,15 @@
-# Expressions
+---
+title: "terraform Cheat Sheet"
+tags:
+  - terraform
+comments: true
+---
 
-## [Conditional Expressions](https://developer.hashicorp.com/terraform/language/expressions/conditionals)
+# terraform Cheat Sheet
+
+## Expressions
+
+### [Conditional Expressions](https://developer.hashicorp.com/terraform/language/expressions/conditionals)
 
 ```hcl
 locals {
