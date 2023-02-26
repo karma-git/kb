@@ -1,5 +1,4 @@
 locals {
-  project_id = "ahorbach" # var
   network    = "default"
 }
 

@@ -1,10 +1,9 @@
 ---
 
-- name: Workshop gcp,terraform,ansible
+- name: aws,gcp,terraform,ansible
   hosts: all
   vars: {}
 
-  remote_user: ansible
   become: true
   become_method: sudo
 
