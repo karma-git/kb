@@ -14,7 +14,7 @@ comments: true
 - bootstrapping - это получение ресурсов по требованию (terraform код) у облачного провайдера
 - provisioning - это конфигурирование (как правило ОС) полученных ресурсов
 
-**взято из статьи про** [`pl-engineering`](/blog/2022-11-23-pl-engineering)
+**взято из статьи про** [`pl-engineering`](/kb/blog/2022-11-23-pl-engineering)
 
 Попробуем решить простую задачу - поднять виртуальную машину и установить на нее nginx
 
@@ -79,7 +79,7 @@ provider "aws" {
 
 ### 2. data
 
-Инициализируем Data Sources, чтобы найти id стандартной PVC, подсети в этой vpc, а также id свежего AMI для ubuntu:
+Инициализируем Data Sources, чтобы найти id стандартной VPC, подсети в этой vpc, а также id свежего AMI для ubuntu:
 
 ```terraform
 data "aws_vpc" "default" {

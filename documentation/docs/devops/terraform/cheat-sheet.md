@@ -11,7 +11,7 @@ comments: true
 
 ### [Conditional Expressions](https://developer.hashicorp.com/terraform/language/expressions/conditionals)
 
-```hcl
+```terraform
 locals {
   multi   = true
   tenancy = local.multi ? "foo,bar" : "foo"
