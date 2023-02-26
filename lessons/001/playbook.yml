@@ -1,0 +1,21 @@
+---
+
+- name: Workshop gcp,terraform,ansible
+  hosts: all
+  vars: {}
+
+  remote_user: ansible
+  become: true
+  become_method: sudo
+
+  tasks:
+    - name: Ensure Nginx is at the latest version
+      apt:
+        name: nginx
+        state: latest
+        update_cache: true
+
+    - name: Make sure Nginx is running
+      systemd:
+        name: nginx
+        state: started
