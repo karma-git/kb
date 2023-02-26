@@ -249,7 +249,7 @@ resource "google_os_login_ssh_public_key" "this" {
 }
 ```
 
-## 3. google_compute_instance
+### 3. google_compute_instance
 
 Запустим виртуальную машину:
 
