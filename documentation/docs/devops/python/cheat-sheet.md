@@ -85,3 +85,30 @@ sts_api = boto3.client(
 )
 aws_account_id = sts_api.get_caller_identity()["Account"]
 ```
+
+## time, datetime
+
+unix time to string
+
+```python
+import datetime
+
+posix_time = 1677919545 # $ date +%s
+
+# date +'%Y-%m-%dT%H:%MZ' -> 2023-03-04T10:46Z
+real_time = datetime.datetime.utcfromtimestamp(posix_time).strftime('%Y-%m-%dT%H:%M:%SZ')
+print(real_time)
+```
+
+realtime (string) to timestamp
+
+```python
+import datetime
+
+real_time = {{real_time}}; # date +'%Y-%m-%dT%H:%MZ' -> 2023-03-04T10:46Z
+
+dt = datetime.datetime.strptime(real_time, '%Y-%m-%dT%H:%M:%SZ')
+
+unix_time = datetime.datetime.timestamp(dt)
+print(unix_time) # $ date +%s -> 1677919545
+```
