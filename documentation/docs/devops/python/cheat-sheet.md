@@ -112,3 +112,9 @@ dt = datetime.datetime.strptime(real_time, '%Y-%m-%dT%H:%M:%SZ')
 unix_time = datetime.datetime.timestamp(dt)
 print(unix_time) # $ date +%s -> 1677919545
 ```
+
+## multitasking
+
+### threads
+
+https://realpython.com/intro-to-python-threading/#starting-a-thread
