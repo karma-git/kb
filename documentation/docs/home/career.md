@@ -1,5 +1,6 @@
 ---
 title: career-anniversary-4y
+comments: true
 ---
 
 # career-anniversary-4y :tada:
