@@ -4,6 +4,7 @@ FROM alpine:3.13.12 as builder
 ARG VERSION_KUBECTL=1.22.0
 ARG VERSION_HELM=3.5.3
 ARG VERSION_KUBESEAL=0.17.5
+ARG VERSION_VM=1.88.1
 # text processors
 ARG VERSION_YQ=4.25.1
 ARG VERTSION_HCL2JSON=0.3.4
@@ -35,6 +36,15 @@ RUN curl -sLO https://github.com/bitnami-labs/sealed-secrets/releases/download/v
   && chmod +x kubeseal \
   && mv kubeseal /usr/local/bin/kubeseal \
   && kubeseal --version
+
+# vmutils
+RUN curl -sLO https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v${VERSION_VM}/vmutils-linux-386-v${VERSION_VM}.tar.gz \
+  && tar xzvf "vmutils-linux-386-v${VERSION_VM}.tar.gz" \
+  && mv vmctl-prod /usr/local/bin/vmctl \
+  && mv vmagent-prod /usr/local/bin/vmagent \
+  && mv vmauth-prod /usr/local/bin/vmauth \
+  && mv vmbackup-prod /usr/local/bin/vmbackup \
+  && mv vmrestore-prod /usr/local/bin/vmrestore
 
 # yq
 RUN curl -sLO  https://github.com/mikefarah/yq/releases/download/v${VERSION_YQ}/yq_linux_amd64.tar.gz \
@@ -93,6 +103,13 @@ RUN apk add --no-cache \
 COPY --from=builder /usr/local/bin/kubectl /usr/local/bin/kubectl
 COPY --from=builder /usr/local/bin/helm /usr/local/bin/helm
 COPY --from=builder /usr/local/bin/kubeseal /usr/local/bin/kubeseal
+# vm
+COPY --from=builder /usr/local/bin/vmctl /usr/local/bin/vmctl
+COPY --from=builder /usr/local/bin/vmagent /usr/local/bin/vmagent
+COPY --from=builder /usr/local/bin/vmauth /usr/local/bin/vmauth
+COPY --from=builder /usr/local/bin/vmbackup /usr/local/bin/vmbackup
+COPY --from=builder /usr/local/bin/vmrestore /usr/local/bin/vmrestore
+# text processors
 COPY --from=builder /usr/local/bin/yq /usr/local/bin/yq
 COPY --from=builder /usr/local/bin/hcl2json /usr/local/bin/hcl2json
 COPY --from=builder /usr/local/bin/dasel /usr/local/bin/dasel
