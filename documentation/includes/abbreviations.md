@@ -1,3 +1,14 @@
+<!-- СS, common -->
+*[CS]: Computer Science - aka информатика
+*[VCS]: Version Control System - система управления версиями aka `git`
+*[DB]: Database - база данных
+*[ЯП]: Язык Программирования
+*[GC]: Garbage Collector - сборщик мусора, в ЯП занимается тем, что удаляет ненужные переменные из памяти
+
+<!-- DevOps -->
+*[CI]: Continuous Integration - автоматика над git хранилищами
+*[CD]: Continuous Delivery - непрерывная доставка (доставка собранного артефакта в хранилище) или Continuous Deployment - непрерывное развертывание после изменений кода
+
 <!-- Cloud -->
 *[CNCF]: Cloud Native Computing Foundation
 *[OPA]: Open Policy Agent
@@ -14,6 +25,7 @@
 *[k8s]: Kubernetes
 *[PDB]: Pod Disruption Budget
 *[CRD]: Custom Resource Definition
+*[HPA]: Horizontal Pod Autoscaler - оркестрирует числом реплик Deployment по метрикам
 *[VPA]: Veritcal Pod Autoscaler
 *[PVC]: PersistentVolumeClaim
 *[PV]: PersistentVolume
@@ -31,6 +43,7 @@
 *[OIDC]: OpenID Connect
 
 <!-- SRE -->
+*[SRE]: Site Reliability Engineering / Engineer - более практический чем DevOps майндсет, сосредоточен на надежности / либо роль человека которое это eval-ит
 *[RPO]: Recovery Point Objective - DATA LOSS - Время - сколько информации можно потерять при Disaster. Например: последние 2 часа
 *[RTO]: Recovery Time Objective -- DOWNTIME - Время - сколько время возьмет восстановить работоспособность системы при Disaster. Например: 12 часов
 *[HA]: High Availability - Высокая доступность системы в отношении к downtime, ошибкам и etc
@@ -39,3 +52,7 @@ Observability
 HA, Reliability
 Automation, Toil
 RTO, RPO -->
+
+
+<!-- RANDOM -->
+*[KK]: KodeKloud - провайдер DevOps курсов
