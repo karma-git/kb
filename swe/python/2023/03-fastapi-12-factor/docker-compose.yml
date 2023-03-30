@@ -1,0 +1,29 @@
+---
+
+version: '3'
+
+services:
+  api:
+    container_name: "fastapi-12f"
+    image: karmawow/fastapi-12f:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/home/app
+    env_file:
+      - .env
+    restart: always
+    ports:
+      # machine:container
+      - "8000:8080"
+
+  redis-db:
+    image: redis
+    container_name: redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf

@@ -1,0 +1,1 @@
+see https://karma-git.github.io/kb/blog/2023-03-30-12f/#fastapi-12-factor
