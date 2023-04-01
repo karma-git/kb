@@ -74,3 +74,9 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 # zprof # NOTE: enable zsh startup profiling
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/a.horbach/.settings/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/a.horbach/.settings/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/a.horbach/.settings/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/a.horbach/.settings/google-cloud-sdk/completion.zsh.inc'; fi
