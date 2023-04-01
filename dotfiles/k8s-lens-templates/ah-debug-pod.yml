@@ -1,0 +1,30 @@
+---
+
+# Create a Pod for debug purposes
+# source ref: https://github.com/karma-git/kb/tree/master/dotfiles/k8slens-templates
+# image ref: https://github.com/karma-git/kb/blob/master/environment/docker/devops-tools.Dockerfile
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ahorbach-debug-docker
+  namespace: kube-system
+  labels:
+    app: ahorbach-debug-docker
+spec:
+  # NOTE: add SA if needed
+  # TODO: run as non-root
+  # serviceAccountName: my-sa-name
+  securityContext:
+    runAsUser: 0
+    runAsGroup: 0
+
+  containers:
+    - name: ahorbach-debug-docker
+      image: docker.io/karmawow/monorepo-devops-tools:latest
+      command:
+        - sleep
+        - infinity
+      resources: {}
+      securityContext:
+        privileged: true

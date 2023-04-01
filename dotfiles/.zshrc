@@ -69,4 +69,8 @@ alias docker-clean=' \
   docker network prune -f ; \
   docker volume prune -f '
 
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # zprof # NOTE: enable zsh startup profiling

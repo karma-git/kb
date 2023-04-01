@@ -1,0 +1,46 @@
+---
+
+# Create a Pod witch mounted docker socket and docker-cli installed
+# source ref: https://github.com/karma-git/kb/tree/master/dotfiles/k8slens-templates
+# image ref: https://github.com/karma-git/kb/blob/master/environment/docker/devops-tools.Dockerfile
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ahorbach-debug-docker
+  namespace: kube-system
+  labels:
+    app: ahorbach-debug-docker
+spec:
+  # NOTE: add SA if needed
+  # serviceAccountName: my-sa-name
+  securityContext:
+    runAsUser: 0
+    runAsGroup: 0
+
+  volumes:
+    - name: docker-sock
+      hostPath:
+        path: "/var/run/docker.sock"
+        type: Socket
+    - name: docker-directory
+      hostPath:
+        path: "/var/lib/docker"
+
+  containers:
+    - name: ahorbach-debug-docker
+      image: docker.io/karmawow/monorepo-devops-tools:latest
+      command:
+        - sleep
+        - infinity
+      resources: {}
+      securityContext:
+        privileged: true
+
+      volumeMounts:
+          - mountPath: /var/run/docker.sock
+            name: docker-sock
+            readOnly: false
+          - mountPath: "/var/lib/docker"
+            name: docker-directory
+            readOnly: false

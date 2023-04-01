@@ -1,0 +1,4 @@
+# XONSH WIZARD START
+source-zsh --interactive True --login True "echo loading xonsh foreign shell"
+# XONSH WIZARD END
+xontrib load argcomplete

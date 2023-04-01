@@ -6,10 +6,11 @@ tasks:
   sync:
     desc: update zshrc,starship,warp
     cmds:
-      - cp -r .zshrc ~/.zshrc
-      - cp -r starship.toml ~/.config/starship.toml
-      - cp -r warp-workflows ~/.warp/workflows
-      - cp -r k8slens-templates ~/.k8slens/templates/ahorbach
+      - rsync .zshrc ~/.zshrc
+      - rsync starship.toml ~/.config/starship.toml
+      - rsync warp-workflows/*.yml ~/.warp/workflows/ah
+      - rsync k8s-lens-templates/*.yml ~/.k8slens/templates/ahorbach
+      - rsync .xonshrc ~/.xonshrc
 
   docs:
     vars:
