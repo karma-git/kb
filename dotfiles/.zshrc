@@ -18,6 +18,8 @@ plugins=(
   zsh-syntax-highlighting
   )
 
+export PATH=/opt/homebrew/bin:$PATH
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 source $ZSH/oh-my-zsh.sh
 
 # ref:https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
@@ -35,8 +37,6 @@ function set_win_title(){
 precmd_functions+=(set_win_title)
 
 # kubernetes settings
-autoload -Uz compinit
-compinit
 export KUBECONFIG=${HOME}/.kube/work-kubeconfig.yml
 
 # Aliases
@@ -61,7 +61,9 @@ alias todo='rg "TODO"'
 alias fixme='rg "FIXME"'
 # alias todo='// TODO | # TODO'
 
-complete -F __start_kubectl k
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+alias k=kubectl
+complete -o default -F __start_kubectl k
 
 alias docker-clean=' \
   docker container prune -f ; \
@@ -80,3 +82,5 @@ if [ -f '/Users/a.horbach/.settings/google-cloud-sdk/path.zsh.inc' ]; then . '/U
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/a.horbach/.settings/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/a.horbach/.settings/google-cloud-sdk/completion.zsh.inc'; fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
