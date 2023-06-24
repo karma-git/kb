@@ -1,0 +1,34 @@
+---
+
+
+- name: Конфигурации
+  block:
+    - name: Клонирование удаленного репозитория Git <karma-git/kb>
+      git:
+        repo: https://github.com/karma-git/kb
+        dest: "{{ dotfiles.local_kb_root }}"
+        version: master
+
+    - name: dotfiles -> .zshrc
+      copy:
+        src: "{{ dotfiles.local_kb_path }}/.zshrc"
+        dest: "{{ ansible_env['HOME'] }}/.zshrc"
+        force: true
+
+    - name: dotfiles -> .starship
+      copy:
+        src: "{{ dotfiles.local_kb_path }}/starship.toml"
+        dest: "{{ ansible_env['HOME'] }}/.config/starship.toml"
+        force: true
+
+    - name: warp-workflows
+      include_tasks: _helpers/clean-and-copy.yml
+      vars:
+        src: "{{ dotfiles.local_kb_path }}/warp-workflows/"
+        dest: "{{ ansible_env['HOME'] }}/.warp/workflows/{{ ansible_env['USER'] }}"
+
+    - name: lens-templates
+      include_tasks: _helpers/clean-and-copy.yml
+      vars:
+        src: "{{ dotfiles.local_kb_path }}/k8s-lens-templates/"
+        dest: "{{ ansible_env['HOME'] }}/.k8slens/templates/{{ ansible_env['USER'] }}"

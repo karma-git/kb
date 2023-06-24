@@ -1,5 +1,14 @@
 ---
 
-- hosts: localhost
+- name: macos-env by a.horbach
+  hosts: localhost
+  gather_facts: true
+
+  vars:
+    brew_formulae_task_enabled: true
+    brew_cask_task_enabled: true
+    pip_task_enabled: true
+    dotfiles_task_enabled: true
+
   roles:
     - role: ../roles/macos-env

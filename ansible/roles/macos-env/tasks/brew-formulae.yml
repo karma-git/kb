@@ -4,5 +4,5 @@
   community.general.homebrew:
     name: "{{ item }}"
     state: present
-  loop: "{{ brew.formulae_install_list }}"
-  when: "item not in brew.formulae_exclude_list"
+  loop: "{{ brew_formulae_install_list }}"
+  when: "item not in brew_formulae_exclude_list"

@@ -2,13 +2,13 @@
 # tasks file for macos-env
 
 - import_tasks: brew-formulae.yml
-  when: brew.formulae_task_enabled
+  when: brew_formulae_task_enabled
 
 - import_tasks: brew-casks.yml
-  when: brew.cask_task_enabled
+  when: brew_cask_task_enabled
 
 - import_tasks: pip-packages.yml
-  when: pip.task_enabled
+  when: pip_task_enabled
 
-- import_tasks: dotfiles.yml
-  when: dotfiles.task_enabled
+- import_tasks: dotfiles-cfgs.yml
+  when: dotfiles_task_enabled

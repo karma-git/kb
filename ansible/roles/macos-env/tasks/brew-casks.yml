@@ -4,5 +4,5 @@
   community.general.homebrew_cask:
     name: "homebrew/cask/{{ item }}"
     state: present
-  loop: "{{ brew.cask_install_list }}"
-  when: "item not in brew.cask_exclude_list"
+  loop: "{{ brew_cask_install_list }}"
+  when: "item not in brew_cask_exclude_list"

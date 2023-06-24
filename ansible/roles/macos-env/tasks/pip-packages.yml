@@ -3,5 +3,5 @@
 - name: Установка pip (python) пакетов
   pip:
     name: "{{ item }}"
-  loop: "{{ pip.install_list }}"
-  when: "item not in pip.exclude_list"
+  loop: "{{ pip_install_list }}"
+  when: "item not in pip_exclude_list"

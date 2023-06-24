@@ -2,29 +2,28 @@
 # defaults file for macos-env
 
 
-# ref: https://brew.sh/; `brew help`
-brew:
-  # formulae is a regular open source package
-  formulae_task_enabled: true
-  formulae_install_list:
-    - jwt-cli
-    - helm
-  formulae_exclude_list: []
-  # cask is a installation of gui application
-  cask_task_enabled: true
-  cask_install_list:
-    - discord
-    - lens
-  cask_exclude_list: []
+# NOTE: brew section; ref: https://brew_sh/; `brew help`
+# formulae is a regular open source package
 
-pip:
-  task_enabled: true
-  install_list:
-    # linters
-    - ansible-lint
-    - black
-    - yamllint
-  exclude_list: []
+brew_formulae_task_enabled: true
+brew_formulae_install_list:
+  - jwt-cli
+  - helm
+brew_formulae_exclude_list: []
+# cask is a installation of gui application
+brew_cask_task_enabled: true
+brew_cask_install_list:
+  - discord
+  - lens
+brew_cask_exclude_list: []
 
-dotfiles:
-  task_enabled: true
+# NOTE: pip - python package manager
+pip_task_enabled: true
+pip_install_list:
+  # linters
+  - ansible-lint
+  - black
+  - yamllint
+pip_exclude_list: []
+
+dotfiles_task_enabled: true

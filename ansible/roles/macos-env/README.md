@@ -1,42 +1,69 @@
-Role Name
+macos-env
 =========
 
-A brief description of the role goes here.
+Роль для установки различного софта и конфигураций на локальный macos компьютер
 
-Requirements
+Requirements & Dependencies
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Для работы brew модуля
+```shell
+ansible-galaxy collection install community.general
+```
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```yaml
+brew_formulae_task_enabled: true
+brew_formulae_install_list:
+  - jwt-cli
+  - helm
+brew_formulae_exclude_list: []
+# cask is a installation of gui application
+brew_cask_task_enabled: true
+brew_cask_install_list:
+  - discord
+  - lens
+brew_cask_exclude_list: []
 
-Dependencies
-------------
+# NOTE: pip - python package manager
+pip_task_enabled: true
+pip_install_list:
+  # linters
+  - ansible-lint
+  - black
+  - yamllint
+pip_exclude_list: []
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+dotfiles_task_enabled: true
+```
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+```yaml
+---
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+- hosts: localhost
+  gather_facts: true
+
+  vars:
+    brew_formulae_task_enabled: false
+    brew_cask_task_enabled: false
+    pip_task_enabled: false
+    dotfiles_task_enabled: true
+
+  roles:
+    - role: ../roles/macos-env  # путь до роли
+```
 
 License
 -------
 
-BSD
+Unlicense
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
-
-<!-- ```shell
-ansible-galaxy collection install community.general # <-- homebrew без этого не пашет
-``` -->
+Andrew Horbach [https://github.com/karma-git](https://github.com/karma-git)

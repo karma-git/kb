@@ -1,2 +1,7 @@
 ---
 # vars file for macos-env
+
+dotfiles:
+  # {% set local_kb_root = '/'.join(local_kb_path.split('/')[:-1]) %}
+  local_kb_root: /tmp/karma-git-kb
+  local_kb_path: /tmp/karma-git-kb/dotfiles
