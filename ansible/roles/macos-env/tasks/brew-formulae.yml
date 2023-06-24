@@ -1,0 +1,8 @@
+---
+
+- name: Установка Homebrew пакетов
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ brew.formulae_install_list }}"
+  when: "item not in brew.formulae_exclude_list"

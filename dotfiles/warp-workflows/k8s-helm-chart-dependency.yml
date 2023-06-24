@@ -1,0 +1,25 @@
+---
+
+name: Download dependency charts
+command: |
+  if [ "$(yq e '.dependencies' Chart.yaml)" != "null" ]; then
+    for chart in $(yq eval -o=j Chart.yaml | jq -cr '.dependencies[]');
+      do
+        name=$(echo $chart | jq -r '.name' -)
+        version=$(echo $chart | jq -r '.version' -)
+        repository=$(echo $chart | jq -r '.repository' -)
+
+        helm repo add $name $repository
+        helm repo update
+        helm pull ${name}/${name} --untar --untardir charts --version "${version}"
+    done
+  fi
+tags:
+  - kubernetes
+  - helm
+  - karma
+description: Download dependency charts
+source_url: https://github.com/karma-git/infra/dotfiles
+author: karma
+author_url: https://github.com/karma-git
+shells: []

@@ -39,6 +39,16 @@ precmd_functions+=(set_win_title)
 # kubernetes settings
 export KUBECONFIG=${HOME}/.kube/work-kubeconfig.yml
 
+function aws-ctx() {
+  if [ $# -eq 0 ]
+    then
+      export AWS_PROFILE="$(aws configure list-profiles | fzf)"
+      echo "Switched to profile ""$AWS_PROFILE""."
+    else
+      export AWS_PROFILE="$1"
+  fi
+}
+
 # Aliases
 
 alias cat=bat

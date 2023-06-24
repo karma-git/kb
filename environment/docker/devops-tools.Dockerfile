@@ -115,11 +115,13 @@ COPY --from=builder /usr/local/bin/hcl2json /usr/local/bin/hcl2json
 COPY --from=builder /usr/local/bin/dasel /usr/local/bin/dasel
 COPY --from=builder /usr/local/bin/starship /usr/local/bin/starship
 
+COPY ./main.py /tmp
 
 # AWS CLI and some other tools
 
 RUN apk add --no-cache \
   py3-pip~=20.3 \
+  python3 \
   && pip install --no-cache-dir \
   awscli~=1.19.39 \
   j2cli[yaml]==0.3.10

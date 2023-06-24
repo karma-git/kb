@@ -1,0 +1,8 @@
+---
+
+- name: Установка Homebrew casks пакетов
+  community.general.homebrew_cask:
+    name: "homebrew/cask/{{ item }}"
+    state: present
+  loop: "{{ brew.cask_install_list }}"
+  when: "item not in brew.cask_exclude_list"

@@ -1,0 +1,17 @@
+---
+
+- name: Установка dotfiles
+  block:
+    - name: Клонирование удаленного репозитория Git <karma-git/kb>
+      git:
+        repo: https://github.com/karma-git/kb
+        dest: /tmp/karma-git-kb
+        version: master
+
+    - name: Копирование файлов на локальный компьютер
+      copy:
+        src: /tmp/karma-git-kb/dotfiles
+        dest: /tmp/a-test
+        force: true
+
+  when: dotfiles.task_enabled

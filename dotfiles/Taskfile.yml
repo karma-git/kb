@@ -3,7 +3,7 @@
 version: "3"
 
 tasks:
-  sync:
+  default:
     desc: update zshrc,starship,warp
     cmds:
       - rsync .zshrc ~/.zshrc
