@@ -5,6 +5,9 @@
   gather_facts: true
 
   vars:
+    macos_user: a.horbach
+    cron_task_enabled: true
+
     brew_formulae_task_enabled: true
     brew_cask_task_enabled: true
     pip_task_enabled: true

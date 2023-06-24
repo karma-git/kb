@@ -1,6 +1,7 @@
 ---
 # defaults file for macos-env
 
+macos_user: foo
 
 # NOTE: brew section; ref: https://brew_sh/; `brew help`
 # formulae is a regular open source package

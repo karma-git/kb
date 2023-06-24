@@ -12,23 +12,23 @@
     - name: dotfiles -> .zshrc
       copy:
         src: "{{ dotfiles.local_kb_path }}/.zshrc"
-        dest: "{{ ansible_env['HOME'] }}/.zshrc"
+        dest: "/Users/{{ macos_user }}/.zshrc"
         force: true
 
     - name: dotfiles -> .starship
       copy:
         src: "{{ dotfiles.local_kb_path }}/starship.toml"
-        dest: "{{ ansible_env['HOME'] }}/.config/starship.toml"
+        dest: "/Users/{{ macos_user }}/.config/starship.toml"
         force: true
 
     - name: warp-workflows
       include_tasks: _helpers/clean-and-copy.yml
       vars:
         src: "{{ dotfiles.local_kb_path }}/warp-workflows/"
-        dest: "{{ ansible_env['HOME'] }}/.warp/workflows/{{ ansible_env['USER'] }}"
+        dest: "/Users/{{ macos_user }}/.warp/workflows/{{ macos_user }}"
 
     - name: lens-templates
       include_tasks: _helpers/clean-and-copy.yml
       vars:
         src: "{{ dotfiles.local_kb_path }}/k8s-lens-templates/"
-        dest: "{{ ansible_env['HOME'] }}/.k8slens/templates/{{ ansible_env['USER'] }}"
+        dest: "/Users/{{ macos_user }}/.k8slens/templates/{{ macos_user }}"
