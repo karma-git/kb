@@ -12,3 +12,6 @@
 
 - import_tasks: dotfiles-cfgs.yml
   when: dotfiles_task_enabled
+
+- import_tasks: cron.yml
+  when: cron_task_enabled

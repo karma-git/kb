@@ -27,3 +27,5 @@ pip_install_list:
 pip_exclude_list: []
 
 dotfiles_task_enabled: true
+
+cron_task_enabled: true
