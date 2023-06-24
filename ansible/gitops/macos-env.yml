@@ -2,7 +2,7 @@
 
 - name: macos-env by a.horbach
   hosts: localhost
-  gather_facts: true
+  gather_facts: false
 
   vars:
     macos_user: a.horbach
