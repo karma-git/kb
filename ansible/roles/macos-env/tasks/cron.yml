@@ -1,9 +1,10 @@
 ---
 
-- name: Добавляем ansible-pull в планировщик задач
+# TODO: is needed to refactor / optimize cron / log / cmd?
+- name: Добавление ansible-pull в планировщик задач
   cron:
     name: "ansible-pull macos-env"
     minute: "*"
-    hour: "*"
+    hour: "9,21"
     job: "/opt/homebrew/bin/ansible-pull -U https://github.com/karma-git/kb ansible/gitops/macos-env.yml 2>&1 | tee -a > /tmp/ansible-pull.log"
     user: "{{ macos_user }}"
