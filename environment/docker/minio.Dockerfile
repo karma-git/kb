@@ -24,7 +24,7 @@ RUN addgroup --gid 1001 app \
     --disabled-password \
     app
 
-USER 1001
+# USER 1001
 
 # # api
 EXPOSE 9000

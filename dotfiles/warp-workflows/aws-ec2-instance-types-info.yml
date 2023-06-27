@@ -1,0 +1,22 @@
+---
+
+name: AWS -> describe instance types
+command: |
+  aws ec2 describe-instance-types \
+      --instance-types {{instance_types}} --output json | jq -r '
+      (["instanceType", "cpu","memory", "pods", "net"]
+    | (., map(length*"-"))), (.InstanceTypes[]
+    | [.InstanceType, .VCpuInfo.DefaultVCpus, .MemoryInfo.SizeInMiB, (.NetworkInfo.MaximumNetworkInterfaces * (.NetworkInfo.Ipv4AddressesPerInterface - 1)) + 2, .NetworkInfo.NetworkPerformance])
+    | @tsv'
+tags:
+  - aws
+  - k8s
+  - karma
+description: AWS -> describe instance types
+arguments:
+  - name: instance_types
+    default_value: "t2.micro c5.large"
+source_url: https://github.com/karma-git/infra/dotfiles
+author: karma
+author_url: https://github.com/karma-git
+shells: []

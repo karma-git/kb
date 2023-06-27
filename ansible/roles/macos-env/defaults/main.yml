@@ -16,6 +16,7 @@ brew_cask_task_enabled: true
 brew_cask_install_list:
   - discord
   - lens
+  - zotero  # NOTE: research assistant (pdf), ref: https://www.zotero.org/
 brew_cask_exclude_list: []
 
 # NOTE: pip - python package manager

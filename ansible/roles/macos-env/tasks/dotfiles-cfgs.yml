@@ -25,7 +25,7 @@
       include_tasks: _helpers/clean-and-copy.yml
       vars:
         src: "{{ dotfiles.local_kb_path }}/warp-workflows/"
-        dest: "/Users/{{ macos_user }}/.warp/workflows/{{ macos_user }}"
+        dest: "/Users/{{ macos_user }}/.warp/workflows/{{ macos_user | replace('.','') }}"
 
     - name: lens-templates
       include_tasks: _helpers/clean-and-copy.yml
