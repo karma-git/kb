@@ -1,0 +1,36 @@
+---
+
+name: AWS -> connect to worker node via session manager
+command: |
+  ec2_id=$(kubectl --context {{ctx}} get nodes {{node}} \
+    -o jsonpath="{.spec.providerID}" \
+    | /usr/bin/grep -Eo "i-\w*")
+
+  echo "DEBUG:    <node-name={{node}}>,<ec2_id=${ec2_id}>"
+
+  aws ssm start-session \
+  --target ${ec2_id}
+
+tags:
+  - aws
+  - kubernetes
+  - k8s
+  - karma
+description: AWS -> connect to worker node via session manager
+arguments:
+  - name: ctx
+    description: kubernetes context
+    default_value: ~
+  - name: node
+    description: kubernetes Node
+    default_value: ~
+  - name: awsProfile
+    description: aws named profile
+    default_value: ~
+  - name: awsRegion
+    description: aws region
+    default_value: ~
+source_url: https://github.com/karma-git/infra/dotfiles
+author: karma
+author_url: https://github.com/karma-git
+shells: []
