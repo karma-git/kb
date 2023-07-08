@@ -18,12 +18,15 @@ brew_cask_install_list:
   - discord
   - lens
   - zotero  # NOTE: research assistant (pdf), ref: https://www.zotero.org/
+  - iterm2
+
 brew_cask_exclude_list: []
 
 # NOTE: pip - python package manager
 pip_task_enabled: true
 pip_install_list:
   # linters
+  - xonsh
   - ansible-lint
   - black
   - yamllint
