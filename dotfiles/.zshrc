@@ -94,3 +94,9 @@ if [ -f '/Users/a.horbach/.settings/google-cloud-sdk/path.zsh.inc' ]; then . '/U
 if [ -f '/Users/a.horbach/.settings/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/a.horbach/.settings/google-cloud-sdk/completion.zsh.inc'; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# NOTE: typer autocomplete
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
+compinit -D

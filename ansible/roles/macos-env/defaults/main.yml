@@ -8,6 +8,7 @@ macos_user: foo
 
 brew_formulae_task_enabled: true
 brew_formulae_install_list:
+  - tree
   - jwt-cli
   - helm
 brew_formulae_exclude_list: []
@@ -26,6 +27,7 @@ pip_install_list:
   - ansible-lint
   - black
   - yamllint
+  - flake8
 pip_exclude_list: []
 
 dotfiles_task_enabled: true
