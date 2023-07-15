@@ -51,11 +51,11 @@ function aws-ctx() {
 
 # Aliases
 
-alias cat=bat
-alias du=dust
-alias find=fd
-alias ls=exa
-alias grep=rg
+# alias cat=bat
+# alias du=dust
+# alias find=fd
+# alias ls=exa
+# alias grep=rg
 
 alias 4g="sudo sysctl -w net.inet.ip.ttl=65"  # Change ttl for don't run router mode on ph
 alias wifipwsh='f() {security find-generic-password -wa $1}; f' # sh wifi (SSID) pw -> you have to insert SSID name
