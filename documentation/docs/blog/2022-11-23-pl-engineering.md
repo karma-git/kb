@@ -32,3 +32,7 @@ comments: true
 **Ссылки**:
 - Один из примеров реализации такой платформы - [репозитоирй на github](https://github.com/maddevsio/aws-eks-base)
 - Совсем недавно услышал, что kubespray, kubeadm и подобные решения уже не котируются. Кластер хочется получать опять же декларативно. С подобным, кажется, может помочь [ранчер](https://docs.ranchermanager.rancher.io/v2.5/pages-for-subheaders/kubernetes-clusters-in-rancher-setup), [cluster-api](https://cluster-api.sigs.k8s.io/user/concepts.html).
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/I4LBX8DYLuE" frameborder="0" allowfullscreen></iframe>
+</div>
