@@ -28,5 +28,4 @@ thor@jump_host ~$ ssh tony@stapp01
 mohammed:x:1002:1004::/home/mohammed:/bin/bash
 [root@stapp01 ~]# cat /etc/group | grep mohammed
 nautilus_admin_users:x:1003:mohammed
-
 ```

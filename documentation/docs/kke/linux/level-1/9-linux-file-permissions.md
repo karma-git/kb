@@ -1,5 +1,5 @@
 ---
-title: "3 - Linux File Permissions"
+title: "9 - Linux File Permissions"
 tags:
   - kodekloud-engineer-sysadmin
 comments: true

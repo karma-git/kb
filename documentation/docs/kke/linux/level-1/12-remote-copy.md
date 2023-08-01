@@ -1,5 +1,5 @@
 ---
-title: "19 - Linux Remote Copy"
+title: "12 - Linux Remote Copy"
 tags:
   - kodekloud-engineer-sysadmin
 comments: true

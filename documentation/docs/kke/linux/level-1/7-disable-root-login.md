@@ -1,5 +1,5 @@
 ---
-title: "16 - Disable Root Login"
+title: "7 - Disable Root Login"
 tags:
   - kodekloud-engineer-sysadmin
 comments: true

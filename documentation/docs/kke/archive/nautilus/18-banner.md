@@ -1,5 +1,5 @@
 ---
-title: "18 -Linux Banner"
+title: "18 - Linux Banner"
 tags:
   - kodekloud-engineer-sysadmin
 comments: true

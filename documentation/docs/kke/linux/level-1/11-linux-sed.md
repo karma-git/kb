@@ -1,5 +1,5 @@
 ---
-title: "20 - Linux String Substitute"
+title: "11 - Linux String Substitute"
 tags:
   - kodekloud-engineer-sysadmin
 comments: true

@@ -1,5 +1,5 @@
 ---
-title: "8 - Selinux Installation"
+title: "19 - Selinux Installation"
 tags:
   - kodekloud-engineer-sysadmin
 comments: true

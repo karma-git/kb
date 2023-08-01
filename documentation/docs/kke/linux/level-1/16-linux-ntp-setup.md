@@ -1,5 +1,5 @@
 ---
-title: "12 - Linux NTP Setup"
+title: "16 - Linux NTP Setup"
 tags:
   - kodekloud-engineer-sysadmin
 comments: true

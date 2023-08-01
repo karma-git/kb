@@ -1,5 +1,5 @@
 ---
-title: "13 - Linux Run Setup"
+title: "14 - Linux Run Setup"
 tags:
   - kodekloud-engineer-sysadmin
 comments: true

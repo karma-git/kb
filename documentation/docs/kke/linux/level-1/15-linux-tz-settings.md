@@ -1,5 +1,5 @@
 ---
-title: "1 - Linux TimeZones Setting"
+title: "15 - Linux TimeZones Setting"
 tags:
   - kodekloud-engineer-sysadmin
 comments: true
