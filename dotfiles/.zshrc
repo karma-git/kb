@@ -85,6 +85,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+export GOPATH="$HOME/.it/go"
+export PATH="$GOPATH/bin:$PATH"
+
 # zprof # NOTE: enable zsh startup profiling
 
 # The next line updates PATH for the Google Cloud SDK.
