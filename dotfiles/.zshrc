@@ -51,35 +51,29 @@ function aws-ctx() {
 
 # Aliases
 
+# iac; terraform
+alias tf='terraform'
+alias tg='terragrunt'
+
+# python
+alias py='python3'
+alias vc='python3 -m venv venv' # creates venv with a name of current dir
+alias va='source venv/bin/activate' # activate venv in current dir
+alias vd='deactivate' # deactivate venv
+
+alias todo='rg "TODO"'
+alias fixme='rg "FIXME"'
+
+# NOTE: deprecated rust aliases
 # alias cat=bat
 # alias du=dust
 # alias find=fd
 # alias ls=exa
 # alias grep=rg
 
-alias 4g="sudo sysctl -w net.inet.ip.ttl=65"  # Change ttl for don't run router mode on ph
-alias wifipwsh='f() {security find-generic-password -wa $1}; f' # sh wifi (SSID) pw -> you have to insert SSID name
-
-alias gpw='python -c "import uuid; print(uuid.uuid4().hex)" # an example, how to generate key via python'  # generating password
-
-alias vc='python3 -m venv venv' # creates venv with a name of current dir
-alias va='source venv/bin/activate' # activate venv in current dir
-alias vd='deactivate' # deactivate venv
-
-alias vector='docker run -i -v $(pwd)/:/etc/vector/ --rm timberio/vector:0.25.2-debian'
-alias todo='rg "TODO"'
-alias fixme='rg "FIXME"'
-# alias todo='// TODO | # TODO'
-
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 alias k=kubectl
 complete -o default -F __start_kubectl k
-
-alias docker-clean=' \
-  docker container prune -f ; \
-  docker image prune -f ; \
-  docker network prune -f ; \
-  docker volume prune -f '
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
