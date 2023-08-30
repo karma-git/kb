@@ -11,6 +11,7 @@ brew_formulae_install_list:
   - tree
   - jwt-cli
   - helm
+  - totp-cli  # Google Authenticator
 brew_formulae_exclude_list: []
 # cask is a installation of gui application
 brew_cask_task_enabled: true
