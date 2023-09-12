@@ -1,0 +1,3 @@
+[submodule "swe/python/2022/tdd.io-fastapi-docker"]
+	path = swe/python/2022/tdd.io-fastapi-docker
+	url = git@github.com:karma-git/tdd.io-fastapi-docker.git
