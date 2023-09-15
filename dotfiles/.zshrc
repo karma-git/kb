@@ -90,6 +90,8 @@ if [ -f '/Users/a.horbach/.settings/google-cloud-sdk/path.zsh.inc' ]; then . '/U
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/a.horbach/.settings/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/a.horbach/.settings/google-cloud-sdk/completion.zsh.inc'; fi
 
+export PATH="/usr/local/bin/google-cloud-sdk/bin:$PATH"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # NOTE: typer autocomplete
