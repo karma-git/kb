@@ -7,7 +7,7 @@ $singularity\
 $kubernetes\
 $directory\
 $vcsh\
-$gcloud \
+$gcloud
 $git_branch\
 $git_commit\
 $git_state\
@@ -138,6 +138,8 @@ time_range = '-'
 # ~/.config/starship.toml
 
 [gcloud]
-format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
+symbol = '🌪️'
+format = 'on [$symbol $project]($style) '
 [gcloud.project_aliases]
 very-long-project-name = 'vlpn'
+asymmetric-rite-399108 = 'gb'

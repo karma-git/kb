@@ -3,6 +3,7 @@
 
 - name: Конфигурации
   block:
+    # TODO: https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh, вставить в ~/.oh-my-zsh/lib/key-bindings.zsh
     - name: Клонирование удаленного репозитория Git <karma-git/kb>
       git:
         repo: https://github.com/karma-git/kb
