@@ -40,3 +40,5 @@ dotfiles_task_enabled: true
 
 cron_task_enabled: true
 cron_task_hours: "9,21"
+
+dotfiles_remote: true

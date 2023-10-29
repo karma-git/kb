@@ -1,6 +1,9 @@
 ---
 # tasks file for macos-env
 
+- import_tasks: debug.yml
+# TODO: add conditions, like DEBUG = true
+
 - import_tasks: brew-formulae.yml
   when: brew_formulae_task_enabled
 

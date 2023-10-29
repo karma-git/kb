@@ -75,6 +75,7 @@ alias fixme='rg "FIXME"'
 alias k=kubectl
 complete -o default -F __start_kubectl k
 alias kz=kustomize
+alias kza="kustomize build . | kubectl apply –f -"
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"

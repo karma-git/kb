@@ -1,0 +1,4 @@
+- name: foo
+  debug: msg="{{ dotfiles_remote }}"
+- name: bar
+  debug: msg="{{ dotfiles_path }}"

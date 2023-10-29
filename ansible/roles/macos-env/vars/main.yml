@@ -1,7 +1,8 @@
 ---
 # vars file for macos-env
 
-dotfiles:
-  # {% set local_kb_root = '/'.join(local_kb_path.split('/')[:-1]) %}
-  local_kb_root: /tmp/karma-git-kb
-  local_kb_path: /tmp/karma-git-kb/dotfiles
+kb_ansible_git_root: /tmp/karma-git-kb
+kb_local_root: "/Users/{{ macos_user }}/work/kb/public"
+
+# Используем файлы в удаленной репе или в локальной
+dotfiles_path: "{{ kb_ansible_git_root if dotfiles_remote else kb_local_root }}/dotfiles"
