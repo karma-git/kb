@@ -13,6 +13,7 @@ brew_formulae_install_list:
   - helm
   - totp-cli  # Google Authenticator
   - pre-commit
+  - kustomize
 brew_formulae_exclude_list: []
 # cask is a installation of gui application
 brew_cask_task_enabled: true
