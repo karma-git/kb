@@ -30,7 +30,6 @@ spec:
   containers:
     - name: ahorbach-debug-docker
       # TODO: need to recreate image
-      # image: docker.io/karmawow/monorepo-devops-tools:latest
       image: docker.io/karmawow/monorepo-devops-tools:3.0
       command:
         - sleep
