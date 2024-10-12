@@ -1,7 +1,14 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  This template creates a EC2 instance with detailed monitoring enabled.
+  Additionally a CPU Utilization alarm checking for 15% or greater average CPU.
 Parameters:
   LatestAmiId:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
-    Default: '/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64'
+    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: "Name of an existing SSH Keypair to access the instance"
   SSHandWebLocation:
     Description: The IP address range that can be used to SSH to the EC2 instances
     Type: String
@@ -14,9 +21,11 @@ Resources:
   EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
+      KeyName: !Ref KeyName
       InstanceType: "t2.micro"
       ImageId: !Ref LatestAmiId
       IamInstanceProfile: !Ref SessionManagerInstanceProfile
+      Monitoring: true
       SecurityGroups:
         - !Ref InstanceSecurityGroup
   InstanceSecurityGroup:
@@ -32,6 +41,21 @@ Resources:
           FromPort: '80'
           ToPort: '80'
           CidrIp: !Ref SSHandWebLocation
+  CPUAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: CPUUtilizationOver15
+      AlarmDescription: "CPU Utilization Over 15 Percent"
+      EvaluationPeriods: "1"
+      Period: "60"
+      Threshold: "15"
+      Namespace : "AWS/EC2"
+      Statistic: "Average"
+      MetricName: "CPUUtilization"
+      Dimensions:
+        - Name: "InstanceId"
+          Value: !Ref EC2Instance
+      ComparisonOperator: "GreaterThanOrEqualToThreshold"
   SessionManagerRole:
     Type: 'AWS::IAM::Role'
     Properties:
