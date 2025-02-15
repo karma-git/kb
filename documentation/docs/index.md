@@ -6,4 +6,17 @@ hide:
 
 ### hey there <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px">
 
-Welcome to my digital garden
+Social Links:
+
+- 🚀 Telegram <https://t.me/a_horbach>
+- 🌍 Website <https://andrewhorbach.com>
+
+IRL
+
+- 📸 Instagram <https://www.instagram.com/a__horbach>
+
+Tech
+
+- 👔 LinkedIn <https://www.linkedin.com/in/a-horbach>
+- 🐙 GitHub <https://github.com/karma-git>
+- 💻 Telegram Tech Blog <https://t.me/devopsi>
