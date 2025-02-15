@@ -142,6 +142,8 @@ plugins:
         - JavaScript
         - terraform
         - kubernetes
+        - aws
+        
 
 # Customization
 extra:
