@@ -140,6 +140,8 @@ plugins:
       tags_allowed: # TODO: automate it
         - HTML5
         - JavaScript
+        - terraform
+        - kubernetes
 
 # Customization
 extra:
