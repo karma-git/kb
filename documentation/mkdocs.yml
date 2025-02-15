@@ -137,13 +137,13 @@ plugins:
   - tags:
       enabled: !ENV [CI, false]
       tags_file: home/tags.md
-      tags_allowed: # TODO: automate it
-        - HTML5
-        - JavaScript
-        - terraform
-        - kubernetes
-        - aws
-        
+      # tags_allowed: # TODO: automate it
+      #   - HTML5
+      #   - JavaScript
+      #   - terraform
+      #   - kubernetes
+      #   - aws
+
 
 # Customization
 extra:
