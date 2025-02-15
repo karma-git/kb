@@ -15,4 +15,5 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install mkdocs mkdocs-material mkdocs-mermaid2-plugin mkdocs-awesome-pages-plugin pygments
+      - run: echo "andrewhorbach.com" > documentation/CNAME  # Добавить CNAME перед деплоем
       - run: cd documentation && mkdocs gh-deploy --force
