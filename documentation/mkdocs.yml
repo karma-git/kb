@@ -4,7 +4,7 @@
 site_name: karma's second brain
 site_description: Andrew Horbach website, build via mkdocs
 site_author: Andrew Horbach
-site_url: https://karma-git.github.io/kb/
+site_url: https://andrewhorbach.com
 
 # Copyright
 copyright: "&copy; 2022 Andrew Horbach"
