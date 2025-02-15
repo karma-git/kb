@@ -19,6 +19,8 @@ jobs:
       # - run: echo "andrewhorbach.com" > documentation/CNAME  # Добавить CNAME перед деплоем
       - run: cd documentation && mkdocs gh-deploy --force
 
+
+      - run: echo "{{ github.repository }}"
       # ✅ Добавляем custom domain через GitHub API
       - name: Set GitHub Pages Custom Domain
         run: |
