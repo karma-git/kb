@@ -5,6 +5,7 @@ site_name: karma's second brain
 site_description: Andrew Horbach website, build via mkdocs
 site_author: Andrew Horbach
 site_url: https://andrewhorbach.com
+use_directory_urls: true
 
 # Copyright
 copyright: "&copy; 2025 Andrew Horbach"
