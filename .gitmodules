@@ -1,3 +1,7 @@
 [submodule "swe/python/2022/tdd.io-fastapi-docker"]
 	path = swe/python/2022/tdd.io-fastapi-docker
 	url = git@github.com:karma-git/tdd.io-fastapi-docker.git
+
+[submodule "dn/002-gl-ff-unleash"]
+	path = dn/002-gl-ff-unleash
+	url = git@gitlab.com:devops-notes9050623/unleash-gl-ff.git
