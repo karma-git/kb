@@ -1,128 +1,116 @@
 ---
-title: career-anniversary-4y
-comments: true
+title: Career
 ---
 
-# career-anniversary-4y :tada:
+# 💼 Career & Experience
 
-inspired by [Kirill Kovalev blog post](https://t.me/k_devops/41)
+## 👨‍💻 About Me
 
-Всем привет!
+Hi, I'm **Andrew Horbach**, a passionate engineer with expertise in cloud technologies, DevOps, and Site Reliability Engineering. I believe in building reliable, scalable systems that enable teams to move fast and deliver value.
 
-Мне есть, чем поделиться - в начале марта я праздную anniversary — я официально 4 года в IT с начала марта 2019. По этому поводу я сделал всратую нарезку моих работ.
+## 🎯 Professional Philosophy
 
-<div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/YphEmTb3AfY" frameborder="0" allowfullscreen></iframe>
-</div>
+> **KISS** (Keep It Simple, Stupid) - Complexity is the enemy of reliability
+>
+> **DRY** (Don't Repeat Yourself) - Automate everything that can be automated
+>
+> **CALMS** - Collaboration, Automation, Lean, Measurement, and Sharing
 
-## Too Long; Don’t watch 🤣
+## 🚀 Current Focus
 
-### Nexters
+- **Platform Engineering** - Building developer platforms on AWS EKS
+- **Site Reliability Engineering** - Implementing SRE practices and principles
+- **Cloud-Native Development** - Kubernetes, microservices, and cloud-native tools
+- **Observability** - Monitoring, logging, and distributed tracing
 
-> Передаю приветы "Кириллу, Леше, Коле, Андрею!"
+## 🛠️ Technical Skills
 
-`июль 2021 - наши дни; Nexters; "DevOps Engineer aka Platform / SR / Kubernetes / Cloud / AnyBuzzWord Engineer"`
+### **Cloud & Infrastructure**
+- **AWS** - EKS, EC2, S3, RDS, CloudFormation
+- **Kubernetes** - Administration, troubleshooting, best practices
+- **Terraform** - Infrastructure as Code, state management
+- **Docker** - Containerization and orchestration
 
-- Разрабатываю Kubernetes платформу на базе AWS EKS и делаю другие телодвижения
-- Приходите работать, тут хорошо и интересно
-- Приходите на getmentor.dev ко мне (а еще ставьте лайки, подпис... и etc.)
+### **DevOps & Automation**
+- **Ansible** - Configuration management and automation
+- **CI/CD** - GitLab CI, GitHub Actions, ArgoCD
+- **Helm** - Kubernetes package management
+- **Monitoring** - Prometheus, Grafana, AlertManager
 
-??? quote "Описание периода"
+### **Programming & Scripting**
+- **Python** - Automation, APIs, data processing
+- **Go** - Learning and exploring cloud-native development
+- **Shell** - Bash scripting and system administration
+- **YAML/JSON** - Configuration and infrastructure definitions
 
-    Если коротко - меня драйвят технологии, мне весело в этом разбираться
+### **Operating Systems**
+- **Linux** - Administration, troubleshooting, security
+- **macOS** - Development environment and tools
 
-BuzzWords (включая то, чем я занимаюсь в свободное от рабочих обязанностей время)
-```yaml
-clouds:
-  - aws
-  - gcp
+## 📚 Learning Journey
 
-orchestration:
-  - kubernetes
-  - docker-swarm
+### **Continuous Learning**
+- **SRE Book** - Studying Google's Site Reliability Engineering
+- **Cloud Native** - Exploring CNCF tools and practices
+- **Platform Engineering** - Building developer experience tools
+- **Observability** - Implementing comprehensive monitoring
 
-provisioning:
-  - terraform
-  - ansible
+### **Certifications & Training**
+- **Kubernetes** - CKA preparation and hands-on experience
+- **AWS** - Cloud practitioner and solutions architect
+- **DevOps** - Practical experience with modern tools and practices
 
-ci-cd:
-  - gitlab-ci
-  - github-actions
-  - argocd
+## 🌟 Key Projects
 
-observability:
-  - metrics-alerts:
-    # GA P/VM
-    - grafana
-    - prometheus
-    - victoria-metrics
-    - alertmanager
-  - logs:
-    - grafana loki
-    - vector
-    # ELK
-    - elasticsearch
-    - logstash
-    - kibana
-  - traces:
-    - grafana tempo
-    - jaeger
+### **Developer Platform**
+- Building a comprehensive platform for developers on AWS EKS
+- Implementing GitOps workflows with ArgoCD
+- Creating self-service infrastructure provisioning
+- Establishing monitoring and alerting systems
 
-development:
-  - python
-  - golang # (just kidding)
+### **Infrastructure Automation**
+- Terraform modules for AWS resources
+- Ansible playbooks for configuration management
+- Helm charts for Kubernetes applications
+- CI/CD pipelines for infrastructure deployment
 
-databases:
-  - postgresql
-  - redis
-```
+### **Knowledge Sharing**
+- **Personal Blog** - Sharing DevOps insights and experiences
+- **Telegram Channel** - DevOps community and discussions
+- **Open Source** - Contributing to various projects
+- **Documentation** - This knowledge base you're reading
 
-### Gcore
+## 🔗 Professional Networks
 
-> Передаю приветы Роме, Саше, Андрею, GSA и конечно же Виталю
+- **LinkedIn** - [a-horbach](https://www.linkedin.com/in/a-horbach)
+- **GitHub** - [karma-git](https://github.com/karma-git)
+- **Telegram** - [@a_horbach](https://t.me/a_horbach)
+- **Discord** - DevOps community participation
 
-`январь 2020 - июль 2021; Gcore; “Hardware Support Engineer && Field Engineer”`
+## 💡 What I'm Looking For
 
-- Получал тикеты в jira, заходил на хосты по ssh, проверял, что вылетел hdd, писал тикет в DC чтоб его заменили
-- Писал некрасивый, но работающий, код на Python (собирался стать Developer-ом), например [dell-api](https://github.com/karma-git/dell_warranty_status_api)
-- Работал в ДатаЦентрах руками
-- Писал ansible-playbook-и
-- Gcore очень серьезная международная компания, посматривайте вакансии (я ушел, потому что устал от железок :D)
+- **Platform Engineering** roles
+- **Site Reliability Engineering** opportunities
+- **DevOps Leadership** positions
+- **Cloud Architecture** projects
+- **Open Source** contributions
 
-??? quote "Описание периода"
-    Весной 20ого защитил диплом на вышке, писал сам код Flask-а с youtube, он был даж не под git-ом. Бумажки тоже писал сам и ужасно утомился (Привет и спасибо что дали доучиться, но дизлайк деду который душил меня на защите)
+## 🎯 Career Goals
 
-    Тут начался буст, потому что в конце лета 2020 я начал учить python по спираченым с rutracker-а курсам. Осенью за счет компании пошел на местный курс (Он был отстой, привет и прости Тим!), написал к выходу покер в терминале [репозиторий](https://github.com/karma-git/belhard_base_python)
+1. **Build Reliable Systems** - Create infrastructure that teams can depend on
+2. **Enable Developer Productivity** - Remove friction from development workflows
+3. **Implement SRE Practices** - Bring reliability engineering to more organizations
+4. **Share Knowledge** - Help others learn and grow in the DevOps space
+5. **Contribute to Open Source** - Give back to the community
 
-    Через пару месяцев начал пилить полезняшки для тикетов в jira и не только.В итоге написал batch job, которая сама делала мои типичные задачи, что высвободило у меня кучу времени. Позже запихаю ее в docker, раздеплою на виртуалке и интерфейс вместо cli уже будет ботик в телеграмме
-    Еще в этот период я полюбил документацию (вел ее тогда в OneNote и GitBooks и блакнотике)
+## 📫 Let's Connect
 
-    В феврале пошел на курс от OTUS и он был очень крутой (привет и спасибо Сурен!), но закончу его только в декабре 21ого будучи уже в Nexters. Тут я хотел стать Django Developer-ом, но меня отговорил в сторону DevOps один нехороший человек (Привет и спасибо Максим!). [Репозиторий](https://github.com/karma-git/otus_base_python) курса, [youtube](https://youtu.be/_tAT43oaKks) дневник
+Interested in working together or just want to chat about technology?
+- **Professional inquiries**: [LinkedIn](https://www.linkedin.com/in/a-horbach)
+- **Technical discussions**: [Telegram](https://t.me/a_horbach)
+- **Open source**: [GitHub](https://github.com/karma-git)
+- **Community**: [Discord](https://discord.gg/eNVwZjJTJb)
 
-    С апреля 21ого я начал барахтаться в ansible + vagrant, aws, terraform
+---
 
-    В мае я попал в EPAM интернатуру Cloud & DevOps, прошел пару модулей: Ansible, AWS, но к июлю ушел, т.к. перешел в Nexters
-
-### OZ
-
-> Передаю приветы "Админам Высшей Категории!"
-
-`март 2019 - декабрь 2020; OZ.by; “Системный Администратор aka IT helpdesk / linux / Anykey Engineer”`
-
-- подключал мышки, cверлил перфоратором дырки и хомутал кабеля (но ставил desktop Linux Mint и верил в светлое будущее)
-- (конец срока) ”деплоил" zabbix и слал в телеграм алерты, накатывал на железные supermicro esxi и что-то еще было, но лень вспоминать
-
-??? quote "Описание периода"
-
-    Если очень коротко, в свободное время я угорал по Linux-у и терминал, пробовал запускать Docker контейнеры
-
-### Что было до?
-
-??? quote "Это прям биография какая-то"
-
-    - у меня было обычное детство и отрочество, но я много играл в компьютер, а именно в Dota (ага, я с 6.38) и в будущем Dota2 (ачивка, в мае 2014ого я был где-то на 180ой строчке в EU лидерборде). Кстати, это бустануло мой английский где-то до A1-A2 (на учебе я его не учил совсем)
-    - отучился в колледже (это средне специальное учебное заведение, где-то на 7, как и в школе) на специальности с длинным названием "Вычислительные Машины, Системы и Сети". Учеба меня не драйвила, тут и моя вина, но думаю и должны быть вопросы к преподавателям. Но я слышал про такие вещи как цвета витой пары, булевая алгебра-логика, ОС, ассемблер, верстка и че-то там еще
-    - отработал почти 2 года в местной школе "Инженером программистом", ничему не научился, тупо от слова совсем. Виноват как я, так и коллеги (простите)
-    - сходил в армию на 1,5 года
-    - после армии поработал продавцом-консультантом (Привет КБТ/МБТ!) в местном ретейлинге бытовой техники, могу продать вам холодильник. Уволился в ноябре 2018ого
-    - в конце февраля устроился в OZ.by, листайте выше
+*"The best code is no code at all. The best infrastructure is the one you don't have to think about."*

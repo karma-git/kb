@@ -1,33 +1,51 @@
 ---
-title: me
+title: Documentation
 ---
 
-### hey there <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px">
+# 📚 Documentation
 
-hi, i'm [Andrew Horbach](https://karma-git.github.io/Andrew-Horbach.github.io-Public/), an engineer
+Welcome to my knowledge base! This is where I keep all the technical guides, cheat sheets, and resources I've collected over the years.
 
-> [KISS](https://en.wikipedia.org/wiki/KISS_principle) (keep it simple, stupid)
->
-> [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) (don't repeat yourself)
->
-> CALMS (Collaboration, Automation, Lean, Measurement and Sharing)
+## 🚀 Quick Navigation
 
-- 🔭 I’m currently working on developers platform based on :cloud: AWS EKS :wink:
-- 🌱 I’m currently learning Go :hamster:, Site Reliability Engineering (SRE)
-- 💬 Ask me about anything related to cloud :cloud:, docker :whale:, Kubernetes :ferris_wheel:, ci/cd 🦊, observability :ambulance:, python :snake:
-- 📫 How to reach me: [:airplane: telegram](https://t.me/a_horbach), [:cd: discord](https://discord.com/channels/7648), [:office: linkedIn](https://www.linkedin.com/in/a-horbach/)
-- ⚡ Fun fact: i'm an archer :dart:
+### [DevOps](/devops/)
+Everything related to DevOps practices, tools, and methodologies:
+- **Ansible** - Automation and configuration management
+- **CI/CD** - Continuous Integration and Deployment
+- **Helm** - Kubernetes package manager
+- **Kubernetes** - Container orchestration
+- **Python** - Programming and scripting
+- **Shell** - Command line tools and scripts
+- **Terraform** - Infrastructure as Code
 
-<details>
-<summary>MyTools :wrench:</summary>
+### [Kubernetes](/kke/)
+Kubernetes learning materials and practical guides:
+- **Level 1** - Basic concepts and operations
+- **Archive** - Historical guides and tutorials
 
-WIP
+### [SRE](/sre/)
+Site Reliability Engineering resources:
+- **Notes** - Key concepts and practices
+- **SRE Book** - Comprehensive SRE guide
 
-</details>
+### [CNCF](/cncf/)
+Cloud Native Computing Foundation resources:
+- **CI/CD** - Continuous Integration and Deployment tools
 
-### My projects
+## 🔍 How to Use This Site
 
-- :pencil: my personal [blog](https://karma-git.github.io/Andrew-Horbach.github.io-Public/)
-- :airplane: [telegram channel](https://t.me/devopsi)
-- :cd: [discord community](https://discord.gg/eNVwZjJTJb)
-- :movie_camera: [youtube](https://www.youtube.com/channel/UC5FEha9Yo9JOcdVMUW3FPWA)
+1. **Browse by Category** - Use the navigation menu to explore different topics
+2. **Search** - Use the search bar to find specific information
+3. **Tags** - Browse content by tags for related topics
+4. **Follow Links** - Many guides reference each other for deeper learning
+
+## 💡 Contributing
+
+This documentation is open source! If you find errors or want to add improvements:
+- [GitHub Repository](https://github.com/karma-git/kb)
+- [Report Issues](https://github.com/karma-git/kb/issues)
+- [Submit Pull Requests](https://github.com/karma-git/kb/pulls)
+
+---
+
+*This documentation is constantly evolving. Check back regularly for updates and new content!*
