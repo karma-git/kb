@@ -6,3 +6,6 @@ kb_local_root: "/Users/{{ macos_user }}/work/kb/public"
 
 # Используем файлы в удаленной репе или в локальной
 dotfiles_path: "{{ kb_ansible_git_root if dotfiles_remote else kb_local_root }}/dotfiles"
+
+# karma-git/workspace: go-task workflows (replaces the old warp-workflows sync)
+workspace_git_root: "/Users/{{ macos_user }}/work/workspace"

@@ -22,11 +22,11 @@
         dest: "/Users/{{ macos_user }}/.config/starship.toml"
         force: true
 
-    - name: warp-workflows
-      include_tasks: _helpers/clean-and-copy.yml
-      vars:
-        src: "{{ dotfiles_path }}/warp-workflows/"
-        dest: "/Users/{{ macos_user }}/.warp/workflows/{{ macos_user | replace('.','') }}"
+    - name: Клонирование удаленного репозитория Git <karma-git/workspace>
+      git:
+        repo: https://github.com/karma-git/workspace
+        dest: "{{ workspace_git_root }}"
+        version: master
 
     - name: lens-templates
       include_tasks: _helpers/clean-and-copy.yml

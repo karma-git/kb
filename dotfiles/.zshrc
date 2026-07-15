@@ -96,6 +96,9 @@ export PATH="/usr/local/bin/google-cloud-sdk/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# ref: https://github.com/karma-git/workspace/tree/master/dotfiles — go-task workflows (twf), replaces warp-workflows
+[ -f ~/work/workspace/dotfiles/shell-init.sh ] && source ~/work/workspace/dotfiles/shell-init.sh
+
 # NOTE: typer autocomplete
 autoload -Uz compinit
 zstyle ':completion:*' menu select

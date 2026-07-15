@@ -4,38 +4,9 @@ version: "3"
 
 tasks:
   default:
-    desc: update zshrc,starship,warp
+    desc: update zshrc,starship
     cmds:
       - rsync .zshrc ~/.zshrc
       - rsync starship.toml ~/.config/starship.toml
-      - rsync warp-workflows/*.yml ~/.warp/workflows/ah
       - rsync k8s-lens-templates/*.yml ~/.k8slens/templates/ahorbach
       - rsync .xonshrc ~/.xonshrc
-
-  docs:
-    vars:
-      wfpath: warp-workflows
-      docsFile: tmp-task-docs.yml
-    # TODO: make it via go-template
-    cmds:
-      - |-
-        touch {{.docsFile}}
-
-        # NOTE: proceed with the warp workflows
-        # search workflows manifests
-        workflows=$(fd . warp-workflows)
-        # add collection for workflows
-        yq e -i '.wf = []' {{.docsFile}}
-
-        for wf in ${workflows}; do
-          name=$(yq e '.spec.name' $wf) \
-          desc=$(yq e '.spec.description' $wf) \
-          yq e -i '.wf += {
-          "name": env(name),
-          "desc": env(desc)
-          }' {{.docsFile}}
-        done
-
-        j2 -f {{.docsFile}} dotfiles.j2 -o dotfiles.md
-        rm -rf {{.docsFile}}
-        cp dotfiles.md ../documentation/docs/blog
